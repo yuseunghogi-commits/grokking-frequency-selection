@@ -4,10 +4,17 @@ This is an honest assessment of what in this repository is already known and wha
 literature search done on 2026-10-19. Quotes were obtained through a summarising fetch tool and should be checked
 against the papers before being cited verbatim. Search coverage is limited; this area produced many preprints in 2026.
 
-**Not read:** arXiv:2610.22593 (Kumar & Sankaranarayanan, *Flat Loss, Evolving Features*). arXiv returned HTTP 429
-repeatedly. From its abstract and GitHub README it studies continued feature learning under flat loss from constructed
-initialisations and does not appear to address frequency selection, but Appendix D.5 ("head-input frequencies") must be
-read before any claim of novelty is made publicly.
+**Kumar & Sankaranarayanan 2026 (arXiv:2610.22593), read in full text on 2026-10-19.** This paper asks whether
+features can keep improving while training cross-entropy stays flat at a positive level. It proves finite-window
+theorems for one-hidden-layer ReLU networks from constructed initialisations, using Polar/Muon-style updates, and shows
+the same coexistence empirically in deeper networks and a one-block transformer. It does not ask which frequencies a run
+selects, and it does not separate the effects of the initialisation and the split. The closest point of contact is
+Appendix D.5: a train-only ridge readout restricted to the 8 frequencies with the largest *training energy*
+E_k = (1/n) Σ_{x∈S} |(r̂(x) − r̄_S) e^{−iω_k y(x)}|² leads the network's held-out accuracy. That E_k is computed from
+the *learned* features r̂ during training and is used to choose a readout. It is not a prediction of frequency
+selection from the data alone before training. Our D(k) uses only the list of training pairs and is computed before any
+training. The two quantities share the idea that the training set alone tells which frequencies matter, so the paper
+should be cited as related, but it does not overlap with findings 1–3 below.
 
 ## Finding by finding
 
@@ -54,4 +61,4 @@ arithmetic.
 16. Mallinar et al. Emergence in non-neural models. ICML 2025. arXiv:2407.20199; Tomàs, Mallinar, Belkin. Breaking Data Symmetry is Needed For Generalization in Feature Learning Kernels. AISTATS 2026. arXiv:2604.00316
 17. Doshi, Das, Wei, Gromov. To grok or not to grok. 2023. arXiv:2310.13061
 18. LeDoux. The Order Is The Message. 2026. arXiv:2603.25047
-19. Kumar, Sankaranarayanan. Flat Loss, Evolving Features. 2026. arXiv:2610.22593 (not read; see above)
+19. Kumar, Sankaranarayanan. Flat Loss, Evolving Features: Grokking in Modular Addition. 2026. arXiv:2610.22593

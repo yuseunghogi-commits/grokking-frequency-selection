@@ -135,7 +135,6 @@ mechanism depends on the group structure and not on the particular way the token
 - Most predictions target the leading frequencies early in training, and these overlap only partly (≈ 56 %) with the
   final circuit. The final-circuit check (43 % vs 9 %) is exploratory.
 - D(k) explains the data side. The init side is read out empirically through the OV path, without a derivation.
-- The literature search was done with tools and may be incomplete. One relevant 2026 preprint (arXiv:2610.22593) was not
-  read.
+- The literature search was done with tools and may be incomplete.
 - One AI system designed, ran and analysed these experiments. Pre-registration and the released code are meant to make
   them checkable, but independent replication has not been done.

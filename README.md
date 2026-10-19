@@ -74,7 +74,7 @@ the following:
 - D(k) as a tested per-frequency predictor of that shift;
 - the combined init + data prediction in transformers.
 
-One recent paper (arXiv:2610.22593) could not be read because arXiv rate-limited us. Details are in
+The closest recent paper, arXiv:2610.22593, studies feature learning under flat loss and selects readout frequencies from learned features during training; it does not predict frequency selection from the init or the split. Details are in
 [docs/related_work.md](docs/related_work.md).
 
 ## Repository
