@@ -71,7 +71,15 @@ Noise-corrected √(data variance / init variance), relative to f = 0.3:
 | observed | 1.08 | 1.00 | 0.90 | 0.57 |
 | √(1 − f) law | 1.10 | 1.00 | 0.85 | 0.66 |
 
-The law captures the trend but was derived after seeing these data. A pre-registered test at a new fraction is planned.
+The law captures the trend but was derived after seeing these data.
+
+**Pre-registered test (PREREG6, f = 0.85, fresh splits and inits): FAILED.** The observed ratio r(0.85)/r(0.3) is
+R = 0.289 (bootstrap 95 % interval 0.30–0.42). The pre-registered window was [0.324, 0.602] around the √(1 − f) prediction
+of 0.463. The data vote shrinks faster than √(1 − f): R lies between the square-root law (0.463) and the linear law
+(0.214), and closer to the linear one. Fitting R = ((1 − f)/0.7)^α gives α ≈ 0.80 here and ≈ 0.67 at f = 0.7 in the
+earlier sweep (exploratory). The energy-fraction argument therefore gets the direction right but not the size. A
+missing ingredient, for example the shrinking per-pair gradient weight 1/(f p²) interacting with Adam's normalisation,
+is left open.
 
 ## What is still open
 
