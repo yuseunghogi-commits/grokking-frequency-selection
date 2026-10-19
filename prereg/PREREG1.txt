@@ -1,0 +1,34 @@
+
+PRE-REGISTRATION — written 2026-10-18 (KST) before any run of this notebook.
+Winner set W(i,s): top-3 embedding Fourier frequencies at step 500 (base model, add mod 113, frac 0.3, wd 1.0).
+Dev IDs: inits 0-31, splits 0-31. Test IDs: inits 1000-1031, splits 1000-1031. Independent-vote inits 5000-5063.
+Votes for cell (i,s): init_vote = mean over other splits of z(log embed share @500) for init i;
+  data_vote = mean over other inits of the same for split s; z() standardizes over the 56 frequencies within a run.
+  data_vote_ind = mean over the 64 independent inits (5000-5063) on split s, step 200.
+Hits = number of winners inside the predicted top-3, summed over cells. Chance-level p-values use a cluster-aware
+  permutation null (2000 perms): frequency labels of the init-side score are shuffled with one permutation per init and
+  those of the data-side score with one permutation per split (cells sharing an init or split are not independent).
+  The hypergeometric expectation (cells x 9/56) is reported for reference only.
+
+C1 (separability, test factorial): hits(z(init_vote)+z(data_vote)) exceeds hits(init_vote) AND hits(data_vote);
+    PASS iff both paired-bootstrap 95% CIs (resampling inits and splits, 5000 reps) of the differences are > 0.
+C2 (data statistic): on dev, choose among closed-form statistics D1,D2,D3,D4,D5min,D5cond,D5r (either sign) the one with the
+    highest mean within-split Spearman correlation with the dev data_vote_ind. On test splits: PASS iff that
+    (sign-fixed) mean within-split Spearman > 0 with within-split permutation p < 0.01 (10000 perms).
+C3 (causal data test): pick the 2 dev splits with the largest max_k of dev data_vote (factorial, step 500); k* = argmax.
+    Datamodel (1536 runs/split, 10% pairs swapped for test pairs, fresh inits, outcome z(k*) at step 200, ridge with CV)
+    ranks training pairs by how much removing them lowers k*. Interventions on 64 fresh inits (9000-9063, paired):
+    remove top-10% pairs (A), 5 random 10% (B), bottom-10% (C). PASS (per split) iff mean_B z(k*) - mean_A z(k*) > 0 with
+    one-sided paired sign-flip permutation p < 0.01 after Holm over the 2 splits, and mean_C > mean_A.
+C4 (combined predictor, test factorial): score = z(attn_path_at_init) + lam * z(data_vote_ind), lam chosen on dev from
+    {0,0.25,0.5,1,2,4}. PASS iff hits(combined) - hits(attn_path) has paired-bootstrap 95% CI > 0 AND
+    hits(combined) is above chance with permutation p < 0.001.  C4b: same with the C2 statistic in place of data_vote_ind (reported).
+R1 (replication of pilot): attention-path-at-init alone on test cells: PASS iff above chance with permutation p < 0.001.
+C5 (generality): for each config that groks (test acc>=0.9) in >= 12/16 full runs: PASS iff median commitment step
+    (first recorded step after which the top-3 equals the step-500 top-3) <= 5% of median grok step.
+C6 (forecasting grok time; grid wd{0.1,0.3,1,3} x frac{0.25,0.3,0.4}): on dev runs pick the best internal and the best
+    behavioural forecast (metric x t0 in {500,1000,2000} x sign) by Harrell's C. On test runs: PASS iff internal C >= 0.75
+    AND internal C - behavioural C >= 0.05 AND bootstrap 95% CI of that difference > 0.
+Holm adjustment is reported across C1-C4,R1. Failures are reported as failures.
+
+sha256: 1034f794335657cd5ba89c985694f59ad013f54a2acd96377a822323cc807df4

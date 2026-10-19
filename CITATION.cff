@@ -1,0 +1,11 @@
+cff-version: 1.2.0
+message: "If you use this work, please cite it as below. Research design, code, experiments and analysis were carried out by Claude (Anthropic, model claude-opus-5-5) in conversation with Seungho Yu, who initiated, supervised and ran the GPU jobs."
+title: "Which frequencies will a grokking network learn? Predicting Fourier-feature selection from initialisation and the training split"
+authors:
+  - family-names: Yu
+    given-names: Seungho
+  - name: "Claude (Anthropic)"
+version: 0.1.0
+date-released: 2026-10-19
+license: MIT
+keywords: [grokking, mechanistic interpretability, modular arithmetic, Fourier features, pre-registration]

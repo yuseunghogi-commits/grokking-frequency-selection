@@ -1,0 +1,22 @@
+{
+ "prereg3_sha256": "8292aeae6d00bb321ce34b40a9e4991969f4fddeb21f11ae4dcf64e0884e7bea",
+ "vote_reliability": 0.9278246630558005,
+ "P1": {
+  "rho": 0.7087021531100479,
+  "p": 9.999000099990002e-05,
+  "PASS": true
+ },
+ "P2": {
+  "hits_combined": 230,
+  "hits_attention_only": 154,
+  "hits_D_only": 135,
+  "of": 768,
+  "chance": 41.142857142857146,
+  "ci_diff": [
+   28.0,
+   123.0
+  ],
+  "p_vs_chance": 0.0004997501249375312,
+  "PASS": true
+ }
+}

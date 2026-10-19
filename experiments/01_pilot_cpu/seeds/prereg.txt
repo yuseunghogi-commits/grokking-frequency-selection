@@ -1,0 +1,1 @@
+PREREGISTERED Fri Oct 16 15:11:54 KST 2026: attn_path pass iff hits>=8/48 on seeds 10-25 (null mean 2.57, P(>=8)=3.0e-3)

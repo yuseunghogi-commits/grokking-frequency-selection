@@ -1,0 +1,10 @@
+[project]
+name = "freqsel"
+version = "0.1.0"
+description = "Predicting which Fourier frequencies a grokking network selects, from its initialisation and training split"
+requires-python = ">=3.10"
+dependencies = ["torch>=2.2", "numpy>=1.26", "scipy>=1.11"]
+license = {text = "MIT"}
+
+[tool.setuptools.packages.find]
+where = ["src"]

@@ -1,0 +1,12 @@
+PRE-REGISTRATION v3 — written 2026-10-19 09:40 KST, before any of these runs exist.
+Statistic (fixed, no free parameters): for a training set T of equations (a, b, c=(a+b) mod 113),
+  D(k) = sum_c |sum_{(a,b,c) in T} exp(2 pi i k a/113)|^2 + sum_c |sum_{(a,b,c) in T} exp(2 pi i k b/113)|^2,  k = 1..56.
+Fresh IDs never used before: splits 5000-5015 (frac 0.3), inits 6000-6015; every init trained on every split
+  (256 runs, 1-layer attention model, AdamW wd 1.0 as before), 200 steps, CPU.
+Data vote V[s,k] = mean over the 16 inits of z(log embedding Fourier share at step 200), minus its mean over splits.
+P1: mean within-split Spearman( log D - mean over splits , V ) > 0.5, and within-split permutation p < 0.001 (10000 perms).
+P2: training-free winner prediction. Winners = top-3 embedding frequencies at step 200 of each run.
+  Score = z(log attention-path power at init) + 1.0 * z(log D)   (weight 1.0 fixed from the v1 dev data).
+  PASS iff hits(score) > hits(attention path alone) with paired bootstrap 95% CI (resampling inits and splits) > 0,
+  and hits(score) above chance with cluster-aware permutation p < 0.001.
+Failures will be reported as failures.

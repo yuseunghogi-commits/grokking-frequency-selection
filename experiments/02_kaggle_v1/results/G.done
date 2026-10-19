@@ -1,0 +1,23 @@
+{
+ "internal_choice": [
+  "wnorm_slope",
+  1000,
+  -1
+ ],
+ "internal_dev_C": 0.8466522678185745,
+ "behavioural_choice": [
+  "b_test_loss",
+  1000,
+  -1
+ ],
+ "behavioural_dev_C": 0.9181665466762658,
+ "internal_test_C": 0.8504741064916119,
+ "behavioural_test_C": 0.9229273036712862,
+ "diff_ci": [
+  -0.11433235592825484,
+  -0.03447063391917849
+ ],
+ "n_test": 96,
+ "n_test_grokked": 66,
+ "PASS": false
+}

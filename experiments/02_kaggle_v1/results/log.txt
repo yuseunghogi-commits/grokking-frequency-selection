@@ -1,0 +1,134 @@
+[    0.0 min] device cuda | out /kaggle/working/grok_out | smoke False | prereg 1034f794335657cd
+[    0.0 min] Stage A: speed benchmark + equivalence check
+[    0.1 min]   batch 64: 0.221 s/step -> Q1 stages ~3.0 h, forecasting stage up to ~4.6-9.2 h
+[    0.2 min]   batched vs torch AdamW, 31 updates: max |d spectrum| = 1.089833676815033e-05
+[    1.4 min]   seed 0: grok step 5000 keys [1, 8, 21] test acc 1.0
+[    1.4 min] Stage B_dev: 32x32 factorial, 500 steps
+[    3.5 min] B_dev: chunk 1/16  (124 s/chunk, ETA 31 min)
+[    5.5 min] B_dev: chunk 2/16  (124 s/chunk, ETA 29 min)
+[    7.6 min] B_dev: chunk 3/16  (124 s/chunk, ETA 27 min)
+[    9.7 min] B_dev: chunk 4/16  (124 s/chunk, ETA 25 min)
+[   11.7 min] B_dev: chunk 5/16  (124 s/chunk, ETA 23 min)
+[   13.8 min] B_dev: chunk 6/16  (124 s/chunk, ETA 21 min)
+[   15.9 min] B_dev: chunk 7/16  (124 s/chunk, ETA 19 min)
+[   17.9 min] B_dev: chunk 8/16  (124 s/chunk, ETA 17 min)
+[   20.0 min] B_dev: chunk 9/16  (124 s/chunk, ETA 14 min)
+[   22.1 min] B_dev: chunk 10/16  (124 s/chunk, ETA 12 min)
+[   24.1 min] B_dev: chunk 11/16  (124 s/chunk, ETA 10 min)
+[   26.2 min] B_dev: chunk 12/16  (124 s/chunk, ETA 8 min)
+[   28.3 min] B_dev: chunk 13/16  (124 s/chunk, ETA 6 min)
+[   30.3 min] B_dev: chunk 14/16  (124 s/chunk, ETA 4 min)
+[   32.4 min] B_dev: chunk 15/16  (124 s/chunk, ETA 2 min)
+[   34.5 min] B_dev: chunk 16/16  (124 s/chunk, ETA 0 min)
+[   34.5 min] Stage B_test: 32x32 factorial, 500 steps
+[   36.6 min] B_test: chunk 1/16  (124 s/chunk, ETA 31 min)
+[   38.6 min] B_test: chunk 2/16  (124 s/chunk, ETA 29 min)
+[   40.7 min] B_test: chunk 3/16  (124 s/chunk, ETA 27 min)
+[   42.8 min] B_test: chunk 4/16  (124 s/chunk, ETA 25 min)
+[   44.9 min] B_test: chunk 5/16  (124 s/chunk, ETA 23 min)
+[   46.9 min] B_test: chunk 6/16  (124 s/chunk, ETA 21 min)
+[   49.0 min] B_test: chunk 7/16  (124 s/chunk, ETA 19 min)
+[   51.1 min] B_test: chunk 8/16  (124 s/chunk, ETA 17 min)
+[   53.1 min] B_test: chunk 9/16  (124 s/chunk, ETA 14 min)
+[   55.2 min] B_test: chunk 10/16  (124 s/chunk, ETA 12 min)
+[   57.3 min] B_test: chunk 11/16  (124 s/chunk, ETA 10 min)
+[   59.4 min] B_test: chunk 12/16  (124 s/chunk, ETA 8 min)
+[   61.4 min] B_test: chunk 13/16  (124 s/chunk, ETA 6 min)
+[   63.5 min] B_test: chunk 14/16  (124 s/chunk, ETA 4 min)
+[   65.6 min] B_test: chunk 15/16  (124 s/chunk, ETA 2 min)
+[   67.6 min] B_test: chunk 16/16  (124 s/chunk, ETA 0 min)
+[   67.6 min] Stage C: proxy validation
+[  109.3 min]   C chunk 1/1 done
+[  109.3 min]   proxy: {'runs': 64, 'grokked': 55, 'containment_step500': 0.5652173913043478, 'containment_step200': 0.5496894409937888, 'agree_200_500': 0.9635416666666666, 'proxy_valid': False}
+[  109.3 min] Stage D: independent-init data votes
+[  110.1 min] D_ind: chunk 1/64  (50 s/chunk, ETA 52 min)
+[  110.9 min] D_ind: chunk 2/64  (50 s/chunk, ETA 52 min)
+[  111.7 min] D_ind: chunk 3/64  (50 s/chunk, ETA 51 min)
+[  112.6 min] D_ind: chunk 4/64  (50 s/chunk, ETA 50 min)
+[  113.4 min] D_ind: chunk 5/64  (50 s/chunk, ETA 49 min)
+[  114.2 min] D_ind: chunk 6/64  (50 s/chunk, ETA 48 min)
+[  115.1 min] D_ind: chunk 7/64  (50 s/chunk, ETA 47 min)
+[  115.9 min] D_ind: chunk 8/64  (50 s/chunk, ETA 47 min)
+[  116.7 min] D_ind: chunk 9/64  (50 s/chunk, ETA 46 min)
+[  117.6 min] D_ind: chunk 10/64  (50 s/chunk, ETA 45 min)
+[  118.4 min] D_ind: chunk 11/64  (50 s/chunk, ETA 44 min)
+[  119.2 min] D_ind: chunk 12/64  (50 s/chunk, ETA 43 min)
+[  120.0 min] D_ind: chunk 13/64  (50 s/chunk, ETA 42 min)
+[  120.9 min] D_ind: chunk 14/64  (50 s/chunk, ETA 41 min)
+[  121.7 min] D_ind: chunk 15/64  (50 s/chunk, ETA 41 min)
+[  122.5 min] D_ind: chunk 16/64  (50 s/chunk, ETA 40 min)
+[  123.4 min] D_ind: chunk 17/64  (50 s/chunk, ETA 39 min)
+[  124.2 min] D_ind: chunk 18/64  (50 s/chunk, ETA 38 min)
+[  125.0 min] D_ind: chunk 19/64  (50 s/chunk, ETA 37 min)
+[  125.8 min] D_ind: chunk 20/64  (50 s/chunk, ETA 36 min)
+[  126.7 min] D_ind: chunk 21/64  (50 s/chunk, ETA 36 min)
+[  127.5 min] D_ind: chunk 22/64  (50 s/chunk, ETA 35 min)
+[  128.3 min] D_ind: chunk 23/64  (50 s/chunk, ETA 34 min)
+[  129.2 min] D_ind: chunk 24/64  (50 s/chunk, ETA 33 min)
+[  130.0 min] D_ind: chunk 25/64  (50 s/chunk, ETA 32 min)
+[  130.8 min] D_ind: chunk 26/64  (50 s/chunk, ETA 32 min)
+[  131.7 min] D_ind: chunk 27/64  (50 s/chunk, ETA 31 min)
+[  132.5 min] D_ind: chunk 28/64  (50 s/chunk, ETA 30 min)
+[  133.3 min] D_ind: chunk 29/64  (50 s/chunk, ETA 29 min)
+[  134.1 min] D_ind: chunk 30/64  (50 s/chunk, ETA 28 min)
+[  135.0 min] D_ind: chunk 31/64  (50 s/chunk, ETA 27 min)
+[  135.8 min] D_ind: chunk 32/64  (50 s/chunk, ETA 27 min)
+[  136.6 min] D_ind: chunk 33/64  (50 s/chunk, ETA 26 min)
+[  137.5 min] D_ind: chunk 34/64  (50 s/chunk, ETA 25 min)
+[  138.3 min] D_ind: chunk 35/64  (50 s/chunk, ETA 24 min)
+[  139.1 min] D_ind: chunk 36/64  (50 s/chunk, ETA 23 min)
+[  140.0 min] D_ind: chunk 37/64  (50 s/chunk, ETA 22 min)
+[  140.8 min] D_ind: chunk 38/64  (50 s/chunk, ETA 22 min)
+[  141.6 min] D_ind: chunk 39/64  (50 s/chunk, ETA 21 min)
+[  142.5 min] D_ind: chunk 40/64  (50 s/chunk, ETA 20 min)
+[  143.3 min] D_ind: chunk 41/64  (50 s/chunk, ETA 19 min)
+[  144.1 min] D_ind: chunk 42/64  (50 s/chunk, ETA 18 min)
+[  145.0 min] D_ind: chunk 43/64  (50 s/chunk, ETA 17 min)
+[  145.8 min] D_ind: chunk 44/64  (50 s/chunk, ETA 17 min)
+[  146.6 min] D_ind: chunk 45/64  (50 s/chunk, ETA 16 min)
+[  147.5 min] D_ind: chunk 46/64  (50 s/chunk, ETA 15 min)
+[  148.3 min] D_ind: chunk 47/64  (50 s/chunk, ETA 14 min)
+[  149.1 min] D_ind: chunk 48/64  (50 s/chunk, ETA 13 min)
+[  149.9 min] D_ind: chunk 49/64  (50 s/chunk, ETA 12 min)
+[  150.8 min] D_ind: chunk 50/64  (50 s/chunk, ETA 12 min)
+[  151.6 min] D_ind: chunk 51/64  (50 s/chunk, ETA 11 min)
+[  152.4 min] D_ind: chunk 52/64  (50 s/chunk, ETA 10 min)
+[  153.3 min] D_ind: chunk 53/64  (50 s/chunk, ETA 9 min)
+[  154.1 min] D_ind: chunk 54/64  (50 s/chunk, ETA 8 min)
+[  154.9 min] D_ind: chunk 55/64  (50 s/chunk, ETA 7 min)
+[  155.7 min] D_ind: chunk 56/64  (50 s/chunk, ETA 7 min)
+[  156.6 min] D_ind: chunk 57/64  (50 s/chunk, ETA 6 min)
+[  157.4 min] D_ind: chunk 58/64  (50 s/chunk, ETA 5 min)
+[  158.2 min] D_ind: chunk 59/64  (50 s/chunk, ETA 4 min)
+[  159.1 min] D_ind: chunk 60/64  (50 s/chunk, ETA 3 min)
+[  159.9 min] D_ind: chunk 61/64  (50 s/chunk, ETA 2 min)
+[  160.7 min] D_ind: chunk 62/64  (50 s/chunk, ETA 2 min)
+[  161.5 min] D_ind: chunk 63/64  (50 s/chunk, ETA 1 min)
+[  162.4 min] D_ind: chunk 64/64  (50 s/chunk, ETA 0 min)
+[  162.4 min] Stage D: closed-form data statistics
+[  164.0 min] Stage E: causal data test
+[  164.0 min]   chosen splits/k*: [(10, 19), (3, 25)]
+[  164.8 min]   datamodel split 10: 64/1536
+[  171.4 min]   datamodel split 10: 576/1536
+[  178.1 min]   datamodel split 10: 1088/1536
+[  189.8 min]   split 10 k*=19: A -0.714  B 1.192  C 3.864  p 0.0001
+[  190.6 min]   datamodel split 3: 64/1536
+[  197.2 min]   datamodel split 3: 576/1536
+[  203.9 min]   datamodel split 3: 1088/1536
+[  215.5 min]   split 3 k*=25: A -1.010  B 1.302  C 3.472  p 0.0001
+[  215.5 min] Stage F: pre-registered Q1 analysis
+[  215.6 min]   C1 {'init': 655, 'data': 959, 'both': 1265} True | C2 D3+ 0.043 0.0367963203679632 False | C4 1256 vs 576 True | R1 True
+[  215.6 min] Stage H: generality
+[  217.7 min] H_short_sub_attn: chunk 1/1  (124 s/chunk, ETA 0 min)
+[  233.7 min]   sub_attn: grokked 5/16, median grok 11600.0, median commit 150.0, path hits 35/192 (p=0.0005)
+[  234.7 min] H_short_add_mlp: chunk 1/1  (62 s/chunk, ETA 0 min)
+[  240.2 min]   add_mlp: grokked 16/16, median grok 7850.0, median commit 200.0, path hits 58/192 (p=0.0005)
+[  240.2 min] Stage G: forecasting
+[  283.1 min]   G frac 0.25 dev: grokked 16/32
+[  326.1 min]   G frac 0.25 test: grokked 14/32
+[  377.4 min]   G frac 0.3 dev: grokked 22/32
+[  428.7 min]   G frac 0.3 test: grokked 21/32
+[  497.3 min]   G frac 0.4 dev: grokked 30/32
+[  565.9 min]   G frac 0.4 test: grokked 31/32
+[  566.0 min]   C6: {'internal_choice': ['wnorm_slope', 1000, -1], 'internal_dev_C': 0.8466522678185745, 'behavioural_choice': ['b_test_loss', 1000, -1], 'behavioural_dev_C': 0.9181665466762658, 'internal_test_C': 0.8504741064916119, 'behavioural_test_C': 0.9229273036712862, 'diff_ci': [-0.11433235592825484, -0.03447063391917849], 'n_test': 96, 'n_test_grokked': 66, 'PASS': False}
+[  566.0 min] ALL DONE

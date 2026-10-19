@@ -1,0 +1,8 @@
+{
+ "runs": 64,
+ "grokked": 55,
+ "containment_step500": 0.5652173913043478,
+ "containment_step200": 0.5496894409937888,
+ "agree_200_500": 0.9635416666666666,
+ "proxy_valid": false
+}

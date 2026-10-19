@@ -1,0 +1,20 @@
+{
+ "test_factorial": {
+  "hits_training_free": 961,
+  "hits_attention_only": 576,
+  "hits_D_only": 701,
+  "of": 3072,
+  "chance": 164.57142857142858,
+  "ci_diff": [
+   289.0,
+   484.0
+  ],
+  "C4_hits_needing_trained_votes": 1256
+ },
+ "final_circuit": {
+  "runs": 64,
+  "top3_precision_training_free": 0.43229166666666663,
+  "top3_precision_attention_only": 0.2708333333333333,
+  "chance": 0.08984375
+ }
+}

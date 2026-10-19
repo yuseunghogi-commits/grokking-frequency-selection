@@ -1,0 +1,11 @@
+PRE-REGISTRATION v4 — written 2026-10-19 (KST) before any of these runs exist. Exploratory-confirmatory generalisation test.
+Library: freqsel (src/freqsel), validated bit-identical to the v1-v3 code at p=113.
+Configs: (add, p=59), (add, p=97), (mul, p=59), (mul, p=97). For mul, tokens 1..p-1 and all Fourier analysis is done in
+  the discrete-log basis (primitive root g), group order n = p-1; frequencies k = 1..floor((n-1)/2).
+Per config: splits 8000-8007 (frac 0.3), inits 8100-8111, every init on every split, 1-layer attention model, AdamW wd 1.0,
+  lr 1e-3 with 10-step warm-up (as before). Data vote V = mean over inits of z(log embedding Fourier share at step 100),
+  centred over splits. D = label_sharing_D (no free parameters), centred over splits.
+G1: in each of the 4 configs, mean within-split Spearman(D, V) > 0.3 with within-split permutation p < 0.01.
+G2: in each config, the relative spread of D across frequencies (std/mean of D, averaged over splits) lies within
+  +-25% of 1/sqrt(p) (add) or 1/sqrt(p-1) (mul).
+Results are reported whether they pass or fail.

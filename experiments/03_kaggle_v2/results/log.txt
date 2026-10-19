@@ -1,0 +1,234 @@
+[    0.0 min] v2 | device cuda | out /kaggle/working/grok2_out | prereg2 9177a4a9795761ef
+[    0.1 min]   speed: batch 64, 0.236 s/step
+[    0.1 min] votes: condition TRUE (add, labels=true, arch=attn)
+[    0.8 min] V_TRUE: 1/16  ETA 11 min
+[    1.7 min] V_TRUE: 2/16  ETA 11 min
+[    2.5 min] V_TRUE: 3/16  ETA 11 min
+[    3.3 min] V_TRUE: 4/16  ETA 10 min
+[    4.1 min] V_TRUE: 5/16  ETA 9 min
+[    5.0 min] V_TRUE: 6/16  ETA 8 min
+[    5.8 min] V_TRUE: 7/16  ETA 7 min
+[    6.6 min] V_TRUE: 8/16  ETA 7 min
+[    7.5 min] V_TRUE: 9/16  ETA 6 min
+[    8.3 min] V_TRUE: 10/16  ETA 5 min
+[    9.1 min] V_TRUE: 11/16  ETA 4 min
+[   10.0 min] V_TRUE: 12/16  ETA 3 min
+[   10.8 min] V_TRUE: 13/16  ETA 2 min
+[   11.6 min] V_TRUE: 14/16  ETA 2 min
+[   12.5 min] V_TRUE: 15/16  ETA 1 min
+[   13.3 min] V_TRUE: 16/16  ETA 0 min
+[   13.3 min] votes: condition SHUF (add, labels=shuffle, arch=attn)
+[   14.1 min] V_SHUF: 1/16  ETA 13 min
+[   15.0 min] V_SHUF: 2/16  ETA 12 min
+[   15.8 min] V_SHUF: 3/16  ETA 11 min
+[   16.6 min] V_SHUF: 4/16  ETA 10 min
+[   17.5 min] V_SHUF: 5/16  ETA 9 min
+[   18.3 min] V_SHUF: 6/16  ETA 8 min
+[   19.1 min] V_SHUF: 7/16  ETA 7 min
+[   20.0 min] V_SHUF: 8/16  ETA 7 min
+[   20.8 min] V_SHUF: 9/16  ETA 6 min
+[   21.6 min] V_SHUF: 10/16  ETA 5 min
+[   22.5 min] V_SHUF: 11/16  ETA 4 min
+[   23.3 min] V_SHUF: 12/16  ETA 3 min
+[   24.1 min] V_SHUF: 13/16  ETA 2 min
+[   25.0 min] V_SHUF: 14/16  ETA 2 min
+[   25.8 min] V_SHUF: 15/16  ETA 1 min
+[   26.6 min] V_SHUF: 16/16  ETA 0 min
+[   26.6 min] votes: condition SHIFT (add, labels=shift7, arch=attn)
+[   27.5 min] V_SHIFT: 1/16  ETA 13 min
+[   28.3 min] V_SHIFT: 2/16  ETA 12 min
+[   29.1 min] V_SHIFT: 3/16  ETA 11 min
+[   30.0 min] V_SHIFT: 4/16  ETA 10 min
+[   30.8 min] V_SHIFT: 5/16  ETA 9 min
+[   31.6 min] V_SHIFT: 6/16  ETA 8 min
+[   32.5 min] V_SHIFT: 7/16  ETA 8 min
+[   33.3 min] V_SHIFT: 8/16  ETA 7 min
+[   34.1 min] V_SHIFT: 9/16  ETA 6 min
+[   35.0 min] V_SHIFT: 10/16  ETA 5 min
+[   35.8 min] V_SHIFT: 11/16  ETA 4 min
+[   36.6 min] V_SHIFT: 12/16  ETA 3 min
+[   37.5 min] V_SHIFT: 13/16  ETA 2 min
+[   38.3 min] V_SHIFT: 14/16  ETA 2 min
+[   39.1 min] V_SHIFT: 15/16  ETA 1 min
+[   40.0 min] V_SHIFT: 16/16  ETA 0 min
+[   40.0 min] votes: condition SUB (sub, labels=true, arch=attn)
+[   40.8 min] V_SUB: 1/16  ETA 12 min
+[   41.6 min] V_SUB: 2/16  ETA 12 min
+[   42.4 min] V_SUB: 3/16  ETA 11 min
+[   43.3 min] V_SUB: 4/16  ETA 10 min
+[   44.1 min] V_SUB: 5/16  ETA 9 min
+[   44.9 min] V_SUB: 6/16  ETA 8 min
+[   45.8 min] V_SUB: 7/16  ETA 7 min
+[   46.6 min] V_SUB: 8/16  ETA 7 min
+[   47.4 min] V_SUB: 9/16  ETA 6 min
+[   48.3 min] V_SUB: 10/16  ETA 5 min
+[   49.1 min] V_SUB: 11/16  ETA 4 min
+[   49.9 min] V_SUB: 12/16  ETA 3 min
+[   50.8 min] V_SUB: 13/16  ETA 2 min
+[   51.6 min] V_SUB: 14/16  ETA 2 min
+[   52.4 min] V_SUB: 15/16  ETA 1 min
+[   53.3 min] V_SUB: 16/16  ETA 0 min
+[   53.3 min] votes: condition MLP (add, labels=true, arch=mlp)
+[   53.7 min] V_MLP: 1/16  ETA 6 min
+[   54.1 min] V_MLP: 2/16  ETA 6 min
+[   54.5 min] V_MLP: 3/16  ETA 6 min
+[   55.0 min] V_MLP: 4/16  ETA 5 min
+[   55.4 min] V_MLP: 5/16  ETA 5 min
+[   55.8 min] V_MLP: 6/16  ETA 4 min
+[   56.2 min] V_MLP: 7/16  ETA 4 min
+[   56.6 min] V_MLP: 8/16  ETA 3 min
+[   57.1 min] V_MLP: 9/16  ETA 3 min
+[   57.5 min] V_MLP: 10/16  ETA 3 min
+[   57.9 min] V_MLP: 11/16  ETA 2 min
+[   58.3 min] V_MLP: 12/16  ETA 2 min
+[   58.8 min] V_MLP: 13/16  ETA 1 min
+[   59.2 min] V_MLP: 14/16  ETA 1 min
+[   59.6 min] V_MLP: 15/16  ETA 0 min
+[   60.0 min] V_MLP: 16/16  ETA 0 min
+[   60.0 min] fixed-init datamodels
+[   60.9 min] DM_2000_3100: 1/16  ETA 12 min
+[   61.7 min] DM_2000_3100: 2/16  ETA 12 min
+[   62.5 min] DM_2000_3100: 3/16  ETA 11 min
+[   63.4 min] DM_2000_3100: 4/16  ETA 10 min
+[   64.2 min] DM_2000_3100: 5/16  ETA 9 min
+[   65.0 min] DM_2000_3100: 6/16  ETA 8 min
+[   65.9 min] DM_2000_3100: 7/16  ETA 7 min
+[   66.7 min] DM_2000_3100: 8/16  ETA 7 min
+[   67.5 min] DM_2000_3100: 9/16  ETA 6 min
+[   68.3 min] DM_2000_3100: 10/16  ETA 5 min
+[   69.2 min] DM_2000_3100: 11/16  ETA 4 min
+[   70.0 min] DM_2000_3100: 12/16  ETA 3 min
+[   70.8 min] DM_2000_3100: 13/16  ETA 2 min
+[   71.7 min] DM_2000_3100: 14/16  ETA 2 min
+[   72.5 min] DM_2000_3100: 15/16  ETA 1 min
+[   73.3 min] DM_2000_3100: 16/16  ETA 0 min
+[   73.3 min]   DM_2000_3100 done
+[   74.1 min] DM_2000_3101: 1/16  ETA 12 min
+[   75.0 min] DM_2000_3101: 2/16  ETA 12 min
+[   75.8 min] DM_2000_3101: 3/16  ETA 11 min
+[   76.6 min] DM_2000_3101: 4/16  ETA 10 min
+[   77.5 min] DM_2000_3101: 5/16  ETA 9 min
+[   78.3 min] DM_2000_3101: 6/16  ETA 8 min
+[   79.1 min] DM_2000_3101: 7/16  ETA 7 min
+[   80.0 min] DM_2000_3101: 8/16  ETA 7 min
+[   80.8 min] DM_2000_3101: 9/16  ETA 6 min
+[   81.6 min] DM_2000_3101: 10/16  ETA 5 min
+[   82.5 min] DM_2000_3101: 11/16  ETA 4 min
+[   83.3 min] DM_2000_3101: 12/16  ETA 3 min
+[   84.1 min] DM_2000_3101: 13/16  ETA 2 min
+[   85.0 min] DM_2000_3101: 14/16  ETA 2 min
+[   85.8 min] DM_2000_3101: 15/16  ETA 1 min
+[   86.6 min] DM_2000_3101: 16/16  ETA 0 min
+[   86.6 min]   DM_2000_3101 done
+[   87.5 min] DM_2001_3100: 1/16  ETA 12 min
+[   88.3 min] DM_2001_3100: 2/16  ETA 12 min
+[   89.1 min] DM_2001_3100: 3/16  ETA 11 min
+[   89.9 min] DM_2001_3100: 4/16  ETA 10 min
+[   90.8 min] DM_2001_3100: 5/16  ETA 9 min
+[   91.6 min] DM_2001_3100: 6/16  ETA 8 min
+[   92.4 min] DM_2001_3100: 7/16  ETA 7 min
+[   93.3 min] DM_2001_3100: 8/16  ETA 7 min
+[   94.1 min] DM_2001_3100: 9/16  ETA 6 min
+[   94.9 min] DM_2001_3100: 10/16  ETA 5 min
+[   95.8 min] DM_2001_3100: 11/16  ETA 4 min
+[   96.6 min] DM_2001_3100: 12/16  ETA 3 min
+[   97.4 min] DM_2001_3100: 13/16  ETA 2 min
+[   98.3 min] DM_2001_3100: 14/16  ETA 2 min
+[   99.1 min] DM_2001_3100: 15/16  ETA 1 min
+[   99.9 min] DM_2001_3100: 16/16  ETA 0 min
+[   99.9 min]   DM_2001_3100 done
+[  100.8 min] DM_2001_3101: 1/16  ETA 12 min
+[  101.6 min] DM_2001_3101: 2/16  ETA 12 min
+[  102.4 min] DM_2001_3101: 3/16  ETA 11 min
+[  103.3 min] DM_2001_3101: 4/16  ETA 10 min
+[  104.1 min] DM_2001_3101: 5/16  ETA 9 min
+[  104.9 min] DM_2001_3101: 6/16  ETA 8 min
+[  105.8 min] DM_2001_3101: 7/16  ETA 7 min
+[  106.6 min] DM_2001_3101: 8/16  ETA 7 min
+[  107.4 min] DM_2001_3101: 9/16  ETA 6 min
+[  108.3 min] DM_2001_3101: 10/16  ETA 5 min
+[  109.1 min] DM_2001_3101: 11/16  ETA 4 min
+[  109.9 min] DM_2001_3101: 12/16  ETA 3 min
+[  110.7 min] DM_2001_3101: 13/16  ETA 2 min
+[  111.6 min] DM_2001_3101: 14/16  ETA 2 min
+[  112.4 min] DM_2001_3101: 15/16  ETA 1 min
+[  113.2 min] DM_2001_3101: 16/16  ETA 0 min
+[  113.2 min]   DM_2001_3101 done
+[  114.1 min] DM_2002_3100: 1/16  ETA 12 min
+[  114.9 min] DM_2002_3100: 2/16  ETA 12 min
+[  115.7 min] DM_2002_3100: 3/16  ETA 11 min
+[  116.6 min] DM_2002_3100: 4/16  ETA 10 min
+[  117.4 min] DM_2002_3100: 5/16  ETA 9 min
+[  118.2 min] DM_2002_3100: 6/16  ETA 8 min
+[  119.1 min] DM_2002_3100: 7/16  ETA 7 min
+[  119.9 min] DM_2002_3100: 8/16  ETA 7 min
+[  120.7 min] DM_2002_3100: 9/16  ETA 6 min
+[  121.6 min] DM_2002_3100: 10/16  ETA 5 min
+[  122.4 min] DM_2002_3100: 11/16  ETA 4 min
+[  123.2 min] DM_2002_3100: 12/16  ETA 3 min
+[  124.0 min] DM_2002_3100: 13/16  ETA 2 min
+[  124.9 min] DM_2002_3100: 14/16  ETA 2 min
+[  125.7 min] DM_2002_3100: 15/16  ETA 1 min
+[  126.5 min] DM_2002_3100: 16/16  ETA 0 min
+[  126.5 min]   DM_2002_3100 done
+[  127.4 min] DM_2002_3101: 1/16  ETA 12 min
+[  128.2 min] DM_2002_3101: 2/16  ETA 12 min
+[  129.0 min] DM_2002_3101: 3/16  ETA 11 min
+[  129.9 min] DM_2002_3101: 4/16  ETA 10 min
+[  130.7 min] DM_2002_3101: 5/16  ETA 9 min
+[  131.5 min] DM_2002_3101: 6/16  ETA 8 min
+[  132.4 min] DM_2002_3101: 7/16  ETA 7 min
+[  133.2 min] DM_2002_3101: 8/16  ETA 7 min
+[  134.0 min] DM_2002_3101: 9/16  ETA 6 min
+[  134.9 min] DM_2002_3101: 10/16  ETA 5 min
+[  135.7 min] DM_2002_3101: 11/16  ETA 4 min
+[  136.5 min] DM_2002_3101: 12/16  ETA 3 min
+[  137.3 min] DM_2002_3101: 13/16  ETA 2 min
+[  138.2 min] DM_2002_3101: 14/16  ETA 2 min
+[  139.0 min] DM_2002_3101: 15/16  ETA 1 min
+[  139.8 min] DM_2002_3101: 16/16  ETA 0 min
+[  139.8 min]   DM_2002_3101 done
+[  140.7 min] DM_2003_3100: 1/16  ETA 12 min
+[  141.5 min] DM_2003_3100: 2/16  ETA 12 min
+[  142.3 min] DM_2003_3100: 3/16  ETA 11 min
+[  143.2 min] DM_2003_3100: 4/16  ETA 10 min
+[  144.0 min] DM_2003_3100: 5/16  ETA 9 min
+[  144.8 min] DM_2003_3100: 6/16  ETA 8 min
+[  145.7 min] DM_2003_3100: 7/16  ETA 7 min
+[  146.5 min] DM_2003_3100: 8/16  ETA 7 min
+[  147.3 min] DM_2003_3100: 9/16  ETA 6 min
+[  148.2 min] DM_2003_3100: 10/16  ETA 5 min
+[  149.0 min] DM_2003_3100: 11/16  ETA 4 min
+[  149.8 min] DM_2003_3100: 12/16  ETA 3 min
+[  150.7 min] DM_2003_3100: 13/16  ETA 2 min
+[  151.5 min] DM_2003_3100: 14/16  ETA 2 min
+[  152.3 min] DM_2003_3100: 15/16  ETA 1 min
+[  153.2 min] DM_2003_3100: 16/16  ETA 0 min
+[  153.2 min]   DM_2003_3100 done
+[  154.0 min] DM_2003_3101: 1/16  ETA 13 min
+[  154.8 min] DM_2003_3101: 2/16  ETA 12 min
+[  155.7 min] DM_2003_3101: 3/16  ETA 11 min
+[  156.5 min] DM_2003_3101: 4/16  ETA 10 min
+[  157.3 min] DM_2003_3101: 5/16  ETA 9 min
+[  158.2 min] DM_2003_3101: 6/16  ETA 8 min
+[  159.0 min] DM_2003_3101: 7/16  ETA 7 min
+[  159.8 min] DM_2003_3101: 8/16  ETA 7 min
+[  160.7 min] DM_2003_3101: 9/16  ETA 6 min
+[  161.5 min] DM_2003_3101: 10/16  ETA 5 min
+[  162.3 min] DM_2003_3101: 11/16  ETA 4 min
+[  163.2 min] DM_2003_3101: 12/16  ETA 3 min
+[  164.0 min] DM_2003_3101: 13/16  ETA 2 min
+[  164.8 min] DM_2003_3101: 14/16  ETA 2 min
+[  165.6 min] DM_2003_3101: 15/16  ETA 1 min
+[  166.5 min] DM_2003_3101: 16/16  ETA 0 min
+[  166.5 min]   DM_2003_3101 done
+[  166.5 min] timecourse
+[  167.3 min] TC: 1/2  ETA 1 min
+[  168.2 min] TC: 2/2  ETA 0 min
+[  168.2 min] analysis (pre-registered v2)
+[  168.7 min]   H1 {'condition': 'SHUF', 'agreement': 0.0389, 'p': 0.0478, 'ceiling': 0.9512, 'disattenuated': 0.0409, 'PASS': False}
+[  168.7 min]   H2 {'condition': 'SHIFT', 'agreement': 0.9552, 'p': 0.0001, 'ceiling': 0.9568, 'disattenuated': 0.9984, 'PASS': True}
+[  168.7 min]   H3 {'condition': 'SUB', 'agreement': 0.0058, 'p': 0.3985, 'ceiling': 0.9534, 'disattenuated': 0.0061, 'PASS': False}
+[  168.7 min]   H4 {'condition': 'MLP', 'agreement': 0.6887, 'p': 0.0001, 'ceiling': 0.9479, 'disattenuated': 0.7266, 'PASS': True}
+[  168.7 min]   H5 {'splits': [{'split': 2000, 'kstar': 56, 'rho': 0.037641864933592256, 'p': 0.009495252373813094, 'heldout_r2': [0.03354485695318132, 0.03021037876050836], 'PASS': True}, {'split': 2001, 'kstar': 51, 'rho': 0.024069275604525802, 'p': 0.07196401799100449, 'heldout_r2': [0.09138342871483152, 0.009772464402818537], 'PASS': False}, {'split': 2002, 'kstar': 38, 'rho': 0.026375713208404365, 'p': 0.05247376311844078, 'heldout_r2': [0.017927379772877283, 0.03433471752099515], 'PASS': False}, {'split': 2003, 'kstar': 30, 'rho': 0.04218871714976015, 'p': 0.0024987506246876563, 'heldout_r2': [-0.0031406259685622384, 0.03261366218613626], 'PASS': True}], 'PASS': False}
+[  168.7 min] ALL DONE

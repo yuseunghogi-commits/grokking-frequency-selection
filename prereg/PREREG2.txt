@@ -1,0 +1,29 @@
+
+PRE-REGISTRATION v2 — written 2026-10-18 (KST) before any run of this notebook.
+All IDs are fresh (never used before): splits 2000-2031 (frac 0.3, p=113, wd 1.0, AdamW as v1). Each condition uses its
+  own 32 inits (TRUE 2000-2031, SHUF 2032-2063, SHIFT 2064-2095, SUB 2096-2127, MLP 2128-2159), so no init is shared.
+Data vote of condition c on split s: V_c[s,k] = mean over that condition's 32 inits of z(log embedding Fourier share at
+  step 200), minus its mean over the 32 splits (removes any preference common to all splits, e.g. an architecture prior).
+Conditions (same training pairs (a,b) for every condition of a split):
+  TRUE  : labels (a+b) mod p, 1-layer attention model (the v1 setting)
+  SHUF  : the same pairs, labels permuted among the training pairs (fixed permutation per split)
+  SHIFT : labels (a+b+7) mod p  (relabelling the outputs; expected to leave the vote unchanged)
+  SUB   : labels (a-b) mod p
+  MLP   : labels (a+b) mod p, attention-free MLP model (v1 Stage H architecture)
+Agreement A(c) = mean over splits of within-split Spearman(V_TRUE[s], V_c[s]) across the 56 frequencies;
+  p from a within-split permutation null (10000 perms). Ceiling(c) = sqrt(rel_TRUE * rel_c), rel = Spearman-Brown
+  corrected split-half (16 vs 16 inits) reliability of the vote. Disattenuated agreement = A(c)/Ceiling(c).
+H1 (inputs vs labels): PASS iff A(SHUF) > 0 with p < 0.01.   [vote is cast, at least partly, by WHICH pairs are present]
+H2 (sanity / validity): PASS iff A(SHIFT) >= 0.8 * Ceiling(SHIFT).
+H3 (task): PASS iff A(SUB) > 0 with p < 0.01.
+H4 (architecture): PASS iff A(MLP) > 0 with p < 0.01.
+H5 (pair influence is a property of the data): splits 2000-2003, k* = argmax_k V_TRUE[s,k]. For each split, two
+  fixed-init datamodels (init 3100 and 3101; 1024 runs each; 10% of training pairs swapped for test pairs; outcome
+  z(k*) at step 200; dual ridge, alpha by 5-fold CV). Influence vectors from the two inits are compared by Spearman
+  across the 3830 pairs; p by permuting pairs (2000 perms). PASS iff rho > 0 with p < 0.01 in >= 3 of the 4 splits.
+  The held-out R^2 of each datamodel is reported (descriptive).
+Timecourse (descriptive, no test): splits 2000-2007 x inits 3200-3215, spectra every step 0-100 of the embedding,
+  attention path, embedding->MLP path and unembedding; per quantity and step, Spearman of its data vote with V_TRUE.
+Failures are reported as failures. Holm adjustment across H1, H3, H4 is reported.
+
+sha256: 9177a4a9795761ef3d358f8606789725e9169e543165ce91fb2676fa11e95589

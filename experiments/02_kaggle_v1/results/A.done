@@ -1,0 +1,24 @@
+{
+ "max_abs_diff_embed_spectrum": 1.089833676815033e-05,
+ "equivalence_ok": true,
+ "seed0_grok_step": 5000,
+ "seed0_final": {
+  "keys": [
+   1,
+   8,
+   21
+  ],
+  "neuron_key_share": 0.9606505632400513,
+  "test_loss": 3.26367148772988e-06,
+  "test_acc": 1.0,
+  "train_loss": 2.8837430932071584e-07,
+  "restricted_loss": 8.980300663097296e-06,
+  "restricted_acc": 1.0,
+  "excluded_loss": 32.69719314575195,
+  "excluded_acc": 0.007383376359939575
+ },
+ "speed": {
+  "batch": 64,
+  "sec_per_step": 0.22135354223705472
+ }
+}
