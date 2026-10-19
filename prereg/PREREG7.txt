@@ -1,0 +1,26 @@
+PRE-REGISTRATION v7 — written 2026-10-20 (KST) before any v7 run exists. Steering and the init readout in a 2-layer model.
+A development pilot (dev seeds 9990/9991, experiments/10_two_layer/pilot.py, not used below) showed that the 2-layer model
+groks in this setup (steps 4500 and 7000) and that its logit-spectrum keys separate cleanly (keys 7-68% of logit energy,
+others <= 2%). Nothing else about 2-layer behaviour was looked at before writing this.
+Model (experiments/10_two_layer/twolayer.py): two blocks, no LayerNorm, d=128, 4 heads, d_mlp=512; block 1 causal attention
++ MLP at all three positions, block 2 attention from '=' + MLP at '='. Same init scales, AdamW (lr 1e-3, 10-step warm-up,
+wd 1.0), full batch, p=113 addition, frac 0.3.
+Splits: exactly the PREREG5 splits (8 random targets k* in {2,17,25,28,33,35,41,43}; original split g=0 and steered split
+g=1.0, ~11-13% of pairs swapped to maximise D(k*)); sha256 of the 16 arrays 10a5469341b48f2b7783ecadb2956f464b991e6fcd24a534dedc3535f3596d3a.
+Inits: fresh 9800-9811. Runner: experiments/10_two_layer/v7_gpu.py (Kaggle GPU). Analysis: analyze7.py.
+Stage A: every init on both splits of every target, 200 steps. Stage B: inits 9800, 9801 on both splits of every target
+(32 runs), up to 15000 steps, test accuracy every 250, stop 2000 steps after all runs in a batch reach 90%.
+T1 (early steering): fraction of steered runs with k* in the step-200 embedding top-3 >= 0.5, and the mean over targets of
+  [steered - original] > 0 with one-sided sign-flip p < 0.01 over the 8 targets.
+T2 (D(k) in 2 layers): on the 8 original splits, mean within-split Spearman between centred log D and the centred data vote
+  (mean over 12 inits of z-scored log step-200 embedding spectrum) > 0.3, permutation p < 0.01.
+T3 (final circuit): final keys = frequencies with >= 5% of the logit energy in the cos/sin k(a+b-c) components. k* is a
+  final key more often on steered than on original splits (one-sided Fisher p < 0.01), and in >= 50% of the steered runs
+  that grokked. If fewer than half of the original-split runs grok, T3 is reported as not testable.
+T4 (theory prediction for the init side): the MLPs see the operands through both attention layers, so the init readout
+  should use the full linear token map E(OV1 + OV2 + OV1 OV2) rather than the 1-layer analogue E OV1. Init vote = mean
+  over the 8 original splits of z-scored log step-200 spectra, centred over inits. PASS iff mean per-init Spearman(ALL,
+  init vote) > 0.3 and [rho(ALL) - rho(OV1)] > 0 with bootstrap-over-inits 95% CI excluding 0.
+T5 (descriptive): grokking rate, median grokking step and final test accuracy, steered vs original; secondary key rule
+  (v1 neuron-cluster rule on block-2 MLP neurons).
+Results are reported whether they pass or fail.

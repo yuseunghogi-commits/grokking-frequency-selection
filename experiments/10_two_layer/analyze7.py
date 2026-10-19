@@ -9,6 +9,7 @@ def zlog(x): l = np.log(x); return (l - l.mean(-1, keepdims=True)) / l.std(-1, k
 res = dict(prereg7_sha256=hashlib.sha256(open(os.path.join(R, "prereg", "PREREG7.txt"), "rb").read()).hexdigest())
 # ---- stage A
 emb = {}; ro = {}
+T = [k for k in T if glob.glob(os.path.join(RES, "A", f"k{k}_g0.0_c*.npz"))]
 for k in T:
     for g in (0.0, 1.0):
         fs = sorted(glob.glob(os.path.join(RES, "A", f"k{k}_g{g}_c*.npz")))
@@ -32,16 +33,17 @@ res["T2"] = dict(spearman=obs, p=p2, PASS=bool(obs > 0.3 and p2 < 0.01))
 # T4: init vote (mean over the 8 original splits, centred over inits) vs init readouts (same inits on every split)
 IV = Z.mean(0); IV = IV - IV.mean(0, keepdims=True)                # [12, 56]
 R0 = {n: np.log(ro[T[0]][n]) for n in ("OV1", "OV2", "ALL", "E", "U")}
-rho = {n: [spearmanr(R0[n][i], IV[i]).correlation for i in range(12)] for n in R0}
+nI = IV.shape[0]
+rho = {n: [spearmanr(R0[n][i], IV[i]).correlation for i in range(nI)] for n in R0}
 R0["ALL*U"] = R0["ALL"] + R0["U"]; R0["OV1*U"] = R0["OV1"] + R0["U"]
-for n in ("ALL*U", "OV1*U"): rho[n] = [spearmanr(R0[n][i], IV[i]).correlation for i in range(12)]
-d4 = np.array(rho["ALL"]) - np.array(rho["OV1"]); boot = [d4[rng.integers(0, 12, 12)].mean() for _ in range(10000)]
+for n in ("ALL*U", "OV1*U"): rho[n] = [spearmanr(R0[n][i], IV[i]).correlation for i in range(nI)]
+d4 = np.array(rho["ALL"]) - np.array(rho["OV1"]); boot = [d4[rng.integers(0, nI, nI)].mean() for _ in range(10000)]
 ci = [float(np.percentile(boot, 2.5)), float(np.percentile(boot, 97.5))]
 res["T4"] = dict(mean_rho={n: float(np.mean(v)) for n, v in rho.items()}, diff_ALL_minus_OV1=float(d4.mean()), ci95=ci,
                  PASS=bool(ci[0] > 0 and np.mean(rho["ALL"]) > 0.3))
 # ---- stage B
 rows = sum([json.load(open(f)) for f in sorted(glob.glob(os.path.join(RES, "B", "*.json")))], [])
-if len(rows) == 32:
+if len(rows) == 32 or os.environ.get("V7_SMOKE"):
     st = [r for r in rows if r["level"] > 0]; ba = [r for r in rows if r["level"] == 0]
     if np.mean([r["grok"] is not None for r in ba]) < 0.5:
         res["T3"] = dict(status="not testable: fewer than half of the original-split runs grokked")
@@ -49,7 +51,7 @@ if len(rows) == 32:
         key = lambda r: r["k"] in r["logit_keys"]
         a1, a0 = sum(map(key, st)), sum(map(key, ba)); g1 = [r for r in st if r["grok"] is not None]
         p3 = fisher_exact([[a1, len(st) - a1], [a0, len(ba) - a0]], alternative="greater")[1]
-        res["T3"] = dict(steered=a1, original=a0, n_each=16, p_fisher=float(p3),
+        res["T3"] = dict(steered=a1, original=a0, n_each=len(st), p_fisher=float(p3),
                          steered_grokked_with_key=sum(map(key, g1)), steered_grokked=len(g1),
                          PASS=bool(p3 < 0.01 and sum(map(key, g1)) >= 0.5 * max(len(g1), 1)),
                          secondary_neuron_rule=dict(steered=sum(r["k"] in r["neuron_keys"] for r in st),

@@ -5,19 +5,21 @@ Stage B: inits 9800, 9801 on both splits of every target (32 runs), up to STEPS_
          stop 2000 steps after all runs in a batch grok; final key frequencies from the logit spectrum."""
 import os, sys, json, time, numpy as np, torch
 import gpu_grok as G, twolayer as T
-STEPS_B = int(os.environ.get("V7_STEPS_B", "STEPS_B_PLACEHOLDER"))
+STEPS_B = int(os.environ.get("V7_STEPS_B", "15000"))
 S = np.load("splits.npz"); I = json.load(open("splits_info.json"))
 TARGETS, BASE = I["targets"], {int(k): v for k, v in I["base"].items()}
 INITS = list(range(9800, 9812)); FULL = INITS[:2]
+if os.environ.get("V7_SMOKE"):                       # pipeline test only: 2 targets, 4 inits, short stage B
+    TARGETS, INITS, STEPS_B = TARGETS[:2], INITS[:4], 300
 OUT = G.OUT; (OUT / "A").mkdir(parents=True, exist_ok=True); (OUT / "B").mkdir(parents=True, exist_ok=True)
 bs = 16 if G.DEV.type == "cuda" else 4
 t0 = time.time()
 for k in TARGETS:
     for g in (0.0, 1.0):
-        for c0 in range(0, 12, bs if bs <= 12 else 12):
+        for c0 in range(0, len(INITS), min(bs, len(INITS))):
             f = OUT / "A" / f"k{k}_g{g}_c{c0}.npz"
             if f.exists(): continue
-            ch = INITS[c0:c0 + min(bs, 12)]; tr = torch.as_tensor(S[f"k{k}_g{g}"])
+            ch = INITS[c0:c0 + min(bs, len(INITS))]; tr = torch.as_tensor(S[f"k{k}_g{g}"])
             r = T.train_batch2([dict(init=i, split=BASE[k]) for i in ch], 200, record=(200,), custom_train_idx=[tr] * len(ch))
             np.savez(f, inits=np.array(ch), embed200=r["rec"][200]["embed"], **{f"ro_{n}": v for n, v in r["readouts0"].items()})
     print(f"A k{k} done {time.time()-t0:.0f}s", flush=True)
