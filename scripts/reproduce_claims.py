@@ -53,3 +53,13 @@ for tag, r in V4.items():
     print(f"{tag:6s} G1 rho={r['spearman']:.3f} p={r['p']:.1e} {ok(r['G1_PASS'])} | "
           f"G2 spread {r['D_relative_spread']:.3f} vs 1/sqrt(n) {r['theory']:.3f} (ratio {r['ratio']:.2f}) {ok(r['G2_PASS'])} | "
           f"vote reliability {r['vote_reliability']:.2f}")
+
+print("\n== v5 (PREREG5): steering by editing the split ==")
+V5 = J("experiments", "07_steering", "results", "V5_results.json")
+print(f"S1 target in step-200 top-3 by strength: {[round(x, 3) for x in V5['S1']['rate_by_level']]}  p={V5['S1']['p_signflip']:.4f} -> {ok(V5['S1']['PASS'])}")
+print(f"S2 within-target Spearman(strength, rate) {V5['S2']['mean_within_target_spearman']:.3f} p={V5['S2']['p']:.1e} -> {ok(V5['S2']['PASS'])}")
+s3 = V5["S3"]; print(f"S3 target in final circuit: steered {s3['steered_key']}/{s3['n_each']} vs original {s3['base_key']}/{s3['n_each']}, Fisher p={s3['p_fisher']:.1e} -> {ok(s3['PASS'])}")
+print("S4", V5["S4"])
+print("\n== v6 (PREREG6): sqrt(1-f) law ==")
+V6 = J("experiments", "09_fraction_law", "results", "V6_results.json")
+print(f"R = {V6['R']:.3f} (prediction {V6['prediction_sqrt_law']:.3f}, window +-30%) -> {ok(V6['F1_PASS'])}")

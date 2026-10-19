@@ -128,13 +128,48 @@ All four configurations pass both tests: Spearman ρ = 0.645, 0.739, 0.673 and 0
 of 1/√n). For multiplication, the predictor is computed in the discrete-log basis. Its success is evidence that the
 mechanism depends on the group structure and not on the particular way the tokens are encoded.
 
+### 3.6 Steering: choosing the frequency in advance (v5)
+
+If D(k) describes how the split shapes selection, it should work as a control knob. We drew 8 target frequencies at
+random (k\* ∈ {2, 17, 25, 28, 33, 35, 41, 43}). For each one we took a random base split and greedily swapped training
+pairs with held-out pairs to raise J = log D(k\*) − mean_{k≠k\*} log D(k), at 5 strengths. Neither the split size nor the
+per-input or per-answer pair counts changed, and no network was involved. At the strongest level, 412–481 pairs (11–13 %; the
+pre-registration said "about 430–470") were swapped. Twelve fresh inits were trained on every split.
+
+| | original | g = 0.15 | 0.3 | 0.6 | 1.0 |
+|---|---|---|---|---|---|
+| pairs swapped (mean) | 0 | 57 | 114 | 243 | 436 |
+| target in step-200 top-3 | 4 % | 11 % | 42 % | 96 % | **100 % (96/96)** |
+
+- **S1:** rate 1.0 ≥ 0.5, and the improvement over the original split is positive for every target (sign-flip p = 0.004,
+  the minimum possible with 8 targets). **PASS.**
+- **S2:** mean within-target Spearman(strength, rate) = 0.95, p = 1e-4. **PASS.**
+- **S3:** after 10 000 steps, the target is a key frequency of the final circuit in **16/16** steered runs, vs 1/16 for the
+  same inits on the original splits (Fisher p = 2.8·10⁻⁸). **PASS.**
+- **S4 (descriptive):** 15/16 steered runs grokked (median step 4250), vs 16/16 on the original splits (median 6375).
+  Mean final test accuracy was 0.992 vs 1.000. The run that did not grok reached 0.88.
+- Exploratory: steering worked equally well whether the init ranked k\* in the top or the bottom half of its OV-path
+  spectrum (100 % in both).
+
+Stage B ran its first 4 runs on CPU. The remaining 28 ran on a Kaggle T4 GPU, using the same code and the same
+hash-verified splits; the device was not specified in the pre-registration.
+
+### 3.7 A failed law for the training fraction (v6)
+
+The data vote weakens as the training fraction grows. An energy-fraction argument predicts that its amplitude relative
+to the init's scales as √(1 − f). The pre-registered test at f = 0.85 gave a ratio of 0.29 against the f = 0.3 value.
+The prediction was 0.46 with a window of 0.32–0.60, so the test **failed**. The effect shrinks faster than predicted,
+roughly as (1 − f)^0.7–0.8. See docs/theory_init_side.md, which also covers the exploratory init-side theory: the OV-path
+argument, the output-side product rule, and the failed power-sum model.
+
 ## 4. Limitations
 
 - Everything is small: 1-layer models, p ≤ 113, a single optimiser setting with frac 0.3 by default. Whether anything
   similar happens in larger models or on non-group tasks is open.
 - Most predictions target the leading frequencies early in training, and these overlap only partly (≈ 56 %) with the
   final circuit. The final-circuit check (43 % vs 9 %) is exploratory.
-- D(k) explains the data side. The init side is read out empirically through the OV path, without a derivation.
+- D(k) explains the data side. The init side has a partial explanation (OV path; output-side product rule), but the
+  relative weight of init and data is not derived.
 - The literature search was done with tools and may be incomplete.
 - One AI system designed, ran and analysed these experiments. Pre-registration and the released code are meant to make
   them checkable, but independent replication has not been done.

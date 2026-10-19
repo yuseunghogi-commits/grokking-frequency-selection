@@ -42,6 +42,15 @@ frequencies it uses differs from run to run, and earlier work describes this as 
    [related work](docs/related_work.md)). It predicts that D varies across frequencies by ≈ 1/√p, which is confirmed.
 6. **It generalises.** The result holds at other primes and for multiplication, using the discrete-log basis
    (pre-registered v4; table below).
+7. **It can be used to steer what a network learns.** We picked 8 target frequencies at random. For each one, we edited
+   only which pairs were in the training set: about 12 % of the 3830 training pairs were swapped so that D(k\*) becomes
+   the largest, with the number of pairs per input and per answer unchanged and no network trained. On the original
+   splits, the target was a leading frequency in 4 % of runs; on the steered splits, in **100 % (96/96)**, including targets
+   the initialisation disfavoured. Trained to the end, **16/16** steered runs had the target in their final circuit, vs
+   1/16 on the original splits (pre-registered v5, Fisher p = 3·10⁻⁸). The steered runs also grokked earlier (median
+   4250 vs 6375 steps); one of the 16 had not reached 90 % test accuracy at 10 000 steps (88 %).
+
+![steering](report/figures/v6_steering.png)
 
 Training-free use on the v1 data (exploratory): the score z(OV path at init) + z(D) gets 961 hits on the v1 test
 factorial, vs. 576 for the init readout alone. C4 needed 64 extra trained runs per split and got 1256. Against the final
@@ -63,6 +72,10 @@ circuits of 64 fully trained runs, 43 % of its top-3 frequencies are true key fr
   is not the final circuit.
 - C6: internal progress measures did not beat a behavioural baseline at predicting grokking time (C 0.85 vs 0.92).
 - H5: per-pair datamodels do not predict the data vote well. An early in-sample R² of 0.87 was overfitting; held out it is ~0.03.
+- PREREG6: a √(1 − f) law for how the data vote weakens with the training fraction f (derived after seeing a sweep)
+  failed its pre-registered test at f = 0.85 (R = 0.29, window 0.32–0.60). The effect shrinks faster than √(1 − f).
+- A unified "init + data" equation is still missing. The equal-weight z-sum works empirically but is not derived, and
+  the simplest physical model of it fails ([docs/theory_init_side.md](docs/theory_init_side.md)).
 
 ## Positioning
 
@@ -72,7 +85,12 @@ the following:
 
 - the finite training split systematically shifts which frequencies are chosen, where prior work treated it as zero-mean noise;
 - D(k) as a tested per-frequency predictor of that shift;
-- the combined init + data prediction in transformers.
+- the combined init + data prediction in transformers;
+- steering: choosing in advance which frequency a network will use, by editing only its training split.
+
+Exploratory init-side theory ([docs/theory_init_side.md](docs/theory_init_side.md)): in this architecture the MLP sees the
+operands only through the attention OV path, which is why the OV spectrum at init predicts better than the W_E spectrum.
+The unembedding's spectrum adds independent information (parameter-free product rule: 576 → 646 test hits).
 
 The closest recent paper, arXiv:2610.22593, studies feature learning under flat loss and selects readout frequencies from learned features during training; it does not predict frequency selection from the init or the split. Details are in
 [docs/related_work.md](docs/related_work.md).
@@ -88,6 +106,9 @@ experiments/
   04_cpu_v3_formula/  PREREG3: closed-form D(k); training_free_v1.py (exploratory)
   05_cpu_derivation/  ΔE vs D per run, training-fraction sweep
   06_generalisation/  PREREG4: p = 59, 97; addition and multiplication
+  07_steering/        PREREG5: steering frequency selection by editing the split (stage B partly on a Kaggle T4)
+  08_init_theory/     exploratory init-side analysis
+  09_fraction_law/    PREREG6: sqrt(1-f) law (failed)
 prereg/               pre-registration texts + verify_hashes.py
 results/v4/           v4 raw spectra and V4_results.json
 report/               figures and the Korean HTML report
