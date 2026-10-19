@@ -1,0 +1,22 @@
+PRE-REGISTRATION v5 — written 2026-10-19 (KST) before any v5 training run exists. Confirmatory test of control.
+Question: if D(k) describes how the training split shapes frequency selection, can we choose a frequency in advance and
+make networks select it, by editing only which pairs are in the training set?
+Construction (experiments/07_steering/make_splits.py, splits.npz sha256 5ce68b03fbd6d904f2c07c401b2fbc308a3d4645cedb658d1f82555e49374132):
+  p=113 addition, frac 0.3 (3830 training pairs). 8 target frequencies drawn at random (numpy rng seed 5):
+  k* in {2,17,25,28,33,35,41,43}. For each, a base random split (seed 9500+j) and steered versions obtained by greedy
+  train<->held-out pair swaps that raise J = log D(k*) - mean_{k!=k*} log D(k) by gain g in {0, 0.15, 0.3, 0.6, 1.0}
+  (g=0 is the unmodified base split). Training-set size is unchanged; at g=1.0 about 430-470 pairs (11-12%) are swapped.
+  D is the two-sided label-sharing statistic of v3. No network was trained to build the splits.
+Training: 1-layer attention model, AdamW lr 1e-3 (10-step warm-up), wd 1.0, full batch; inits 9600-9611 (fresh).
+Stage A: every init on every (k*, g) split, 200 steps. Outcome: hit = k* in top-3 of the embedding Fourier spectrum at step 200.
+Stage B: inits 9600, 9601 on the g=1.0 and g=0 splits of every target (32 runs), 10000 steps, test acc evaluated every 250;
+  final key frequencies by the neuron-cluster rule (>=3% of live neurons), as in v1.
+S1 (early control): hit rate at g=1.0 >= 0.5, and the mean over targets of [hit rate(g=1.0) - hit rate(g=0)] > 0 with
+  one-sided sign-flip permutation p < 0.01 over the 8 targets (all 256 flips).
+S2 (dose-response): mean within-target Spearman correlation between g and hit rate (5 levels) > 0.5, with one-sided
+  permutation p < 0.01 (levels permuted within each target, 10000 reps).
+S3 (final circuit): among stage-B runs, k* is a final key frequency more often on g=1.0 splits than on g=0 splits,
+  one-sided Fisher exact p < 0.01 over the 16 vs 16 runs, and in at least 50% of the g=1.0 runs.
+S4 (no damage, descriptive): grokking rate and final test accuracy on g=1.0 vs g=0 splits are reported.
+Exploratory (not tested): whether steering succeeds against the init's preference (rank of k* in the OV-path spectrum at init).
+Results are reported whether they pass or fail.
