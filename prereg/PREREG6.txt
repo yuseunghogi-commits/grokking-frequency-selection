@@ -1,0 +1,12 @@
+PRE-REGISTRATION v6 — written 2026-10-19 (KST) before any of these runs exist. Confirmatory test of a post-hoc law.
+Law (derived after seeing the 0.15/0.3/0.5/0.7 sweep, docs/theory_init_side.md): with mean-reduced loss, the fraction of the
+embedding update's energy at each nonzero frequency is (1-f)/p, so the data vote's amplitude relative to the init vote's
+scales as sqrt(1-f).
+Runs (experiments/09_fraction_law/run6.py): p=113 addition, 1-layer attention model, AdamW lr 1e-3 (10-step warm-up),
+wd 1.0; fresh splits 7600-7607 and fresh inits 7700-7711; every init on every split, at f=0.3 and f=0.85; 60 steps.
+Statistic (analyze6.py): per fraction, Z = z-scored log embedding spectrum at step 60; data variance s2 = var(split vote
+centred over splits) - residual var / n_inits; init variance i2 = var(init vote centred over inits) - residual var / n_splits;
+ratio r(f) = sqrt(max(s2,0)/i2). R = r(0.85) / r(0.3).
+F1: R lies within +-30% of the sqrt law, sqrt(0.15/0.7) = 0.463, i.e. in [0.324, 0.602]. This interval excludes the
+  linear law (1-f) (0.214) and no dependence on f (1.0). Bootstrap CI (splits and inits resampled) reported descriptively.
+Results are reported whether they pass or fail.
