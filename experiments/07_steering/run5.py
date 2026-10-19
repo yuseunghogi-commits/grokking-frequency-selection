@@ -21,10 +21,13 @@ for k in TARGETS:
             np.savez(f, inits=np.array(ch), embed200=r["rec"][200]["embed"], path0=r["rec"][0]["path"])
             print(f"A k{k} g{g} c{c0} {time.time()-t0:.0f}s", flush=True)
 print("A_DONE", flush=True)
+MAXB = int(os.environ.get("V5_MAXB", "99")); nb = 0
 jobs = [(k, g, i) for k in TARGETS for g in (LEVELS[-1], 0.0) for i in FULL_INITS]
 for j0 in range(0, len(jobs), 4):
     f = outB / f"b{j0:02d}.json"
     if f.exists(): continue
+    if nb >= MAXB: print("PAUSE", flush=True); sys.exit(0)
+    nb += 1
     js = jobs[j0:j0 + 4]
     r = G.train_batch([dict(init=i, split=BASE[k]) for k, g, i in js], 10000, record=(200,), eval_every=250,
                       custom_train_idx=[torch.as_tensor(S[f"k{k}_g{g}"]) for k, g, i in js])
