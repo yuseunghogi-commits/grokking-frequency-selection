@@ -52,6 +52,17 @@ frequencies it uses differs from run to run, and earlier work describes this as 
 
 ![steering](report/figures/v6_steering.png)
 
+8. **Steering also works in a 2-layer transformer.** The same 8 targets and splits were used with fresh inits and a
+   two-block model (pre-registered v7). On the original splits the target led in 3 % of runs at step 200; on the steered
+   splits it led in 100 % (96/96). After training, 15/16 steered runs had the target in their final circuit (logit
+   rule; 16/16 by the neuron rule) vs 0/16 on the original splits (Fisher p = 3·10⁻⁸). D(k) predicts the data vote in
+   the 2-layer model too (ρ = 0.72). All runs grokked, the steered ones earlier (median 4000 vs 5125 steps).
+   **Failed:** the predicted init readout through all attention paths, E(OV1 + OV2 + OV1·OV2), was *not* better than
+   E·OV1 (0.64 vs 0.68). The raw embedding spectrum was best (0.74), so the OV-path argument from the 1-layer model
+   does not carry over as predicted.
+
+![two-layer](report/figures/v7_two_layer.png)
+
 Training-free use on the v1 data (exploratory): the score z(OV path at init) + z(D) gets 961 hits on the v1 test
 factorial, vs. 576 for the init readout alone. C4 needed 64 extra trained runs per split and got 1256. Against the final
 circuits of 64 fully trained runs, 43 % of its top-3 frequencies are true key frequencies (chance 9 %).
@@ -72,6 +83,7 @@ circuits of 64 fully trained runs, 43 % of its top-3 frequencies are true key fr
   is not the final circuit.
 - C6: internal progress measures did not beat a behavioural baseline at predicting grokking time (C 0.85 vs 0.92).
 - H5: per-pair datamodels do not predict the data vote well. An early in-sample R² of 0.87 was overfitting; held out it is ~0.03.
+- PREREG7 T4: the 2-layer init-readout prediction (all paths > layer-1 OV path) failed.
 - PREREG6: a √(1 − f) law for how the data vote weakens with the training fraction f (derived after seeing a sweep)
   failed its pre-registered test at f = 0.85 (R = 0.29, window 0.32–0.60). The effect shrinks faster than √(1 − f).
 - A unified "init + data" equation is still missing. The equal-weight z-sum works empirically but is not derived, and
@@ -109,6 +121,7 @@ experiments/
   07_steering/        PREREG5: steering frequency selection by editing the split (stage B partly on a Kaggle T4)
   08_init_theory/     exploratory init-side analysis
   09_fraction_law/    PREREG6: sqrt(1-f) law (failed)
+  10_two_layer/       PREREG7: steering in a 2-layer model (Kaggle T4); dev pilot; smoke-test disclosure
 prereg/               pre-registration texts + verify_hashes.py
 results/v4/           v4 raw spectra and V4_results.json
 report/               figures and the Korean HTML report

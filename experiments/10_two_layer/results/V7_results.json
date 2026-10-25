@@ -1,0 +1,651 @@
+{
+ "prereg7_sha256": "318f50ae5c36673fa28a29c9c1a79b8b7cec3a8401784be60ab894b0f2b4accb",
+ "T1": {
+  "rate_original": 0.03125,
+  "rate_steered": 1.0,
+  "by_target": [
+   [
+    0.0,
+    1.0
+   ],
+   [
+    0.0,
+    1.0
+   ],
+   [
+    0.08333333333333333,
+    1.0
+   ],
+   [
+    0.0,
+    1.0
+   ],
+   [
+    0.0,
+    1.0
+   ],
+   [
+    0.08333333333333333,
+    1.0
+   ],
+   [
+    0.08333333333333333,
+    1.0
+   ],
+   [
+    0.0,
+    1.0
+   ]
+  ],
+  "p_signflip": 0.00390625,
+  "PASS": true
+ },
+ "T2": {
+  "spearman": 0.7177546138072455,
+  "p": 9.999000099990002e-05,
+  "PASS": true
+ },
+ "T4": {
+  "mean_rho": {
+   "OV1": 0.6792036910457964,
+   "OV2": 0.4096605149236729,
+   "ALL": 0.6412964228753703,
+   "E": 0.7372123490544543,
+   "U": 0.1779733424470267,
+   "ALL*U": 0.661340852130326,
+   "OV1*U": 0.6708190931875143
+  },
+  "diff_ALL_minus_OV1": -0.03790726817042605,
+  "ci95": [
+   -0.0915400717703349,
+   0.0035325529733424665
+  ],
+  "PASS": false
+ },
+ "T3": {
+  "steered": 15,
+  "original": 0,
+  "n_each": 16,
+  "p_fisher": 2.8282406617856892e-08,
+  "steered_grokked_with_key": 15,
+  "steered_grokked": 16,
+  "PASS": true,
+  "secondary_neuron_rule": {
+   "steered": 16,
+   "original": 0
+  }
+ },
+ "T5": {
+  "steered": {
+   "grok_rate": 1.0,
+   "median_grok": 4000.0,
+   "mean_test_acc": 0.9996783882379532
+  },
+  "original": {
+   "grok_rate": 1.0,
+   "median_grok": 5125.0,
+   "mean_test_acc": 0.9975528679788113
+  }
+ },
+ "runs": [
+  {
+   "k": 2,
+   "level": 1.0,
+   "init": 9800,
+   "grok": 2250,
+   "logit_keys": [
+    2,
+    11,
+    46
+   ],
+   "neuron_keys": [
+    2,
+    11,
+    46
+   ],
+   "test_acc": 1.0
+  },
+  {
+   "k": 2,
+   "level": 1.0,
+   "init": 9801,
+   "grok": 2750,
+   "logit_keys": [
+    2,
+    26,
+    35
+   ],
+   "neuron_keys": [
+    1,
+    2,
+    26,
+    35
+   ],
+   "test_acc": 0.9995525479316711
+  },
+  {
+   "k": 2,
+   "level": 0.0,
+   "init": 9800,
+   "grok": 4000,
+   "logit_keys": [
+    26,
+    46
+   ],
+   "neuron_keys": [
+    3,
+    26,
+    46
+   ],
+   "test_acc": 1.0
+  },
+  {
+   "k": 2,
+   "level": 0.0,
+   "init": 9801,
+   "grok": 4250,
+   "logit_keys": [
+    22,
+    26,
+    32
+   ],
+   "neuron_keys": [
+    22,
+    26,
+    32
+   ],
+   "test_acc": 1.0
+  },
+  {
+   "k": 17,
+   "level": 1.0,
+   "init": 9800,
+   "grok": 4500,
+   "logit_keys": [
+    11,
+    17,
+    24
+   ],
+   "neuron_keys": [
+    11,
+    17,
+    24
+   ],
+   "test_acc": 1.0
+  },
+  {
+   "k": 17,
+   "level": 1.0,
+   "init": 9801,
+   "grok": 3500,
+   "logit_keys": [
+    7,
+    22
+   ],
+   "neuron_keys": [
+    7,
+    17,
+    22
+   ],
+   "test_acc": 1.0
+  },
+  {
+   "k": 17,
+   "level": 0.0,
+   "init": 9800,
+   "grok": 6750,
+   "logit_keys": [
+    3,
+    12,
+    54
+   ],
+   "neuron_keys": [
+    3,
+    12,
+    52,
+    54
+   ],
+   "test_acc": 1.0
+  },
+  {
+   "k": 17,
+   "level": 0.0,
+   "init": 9801,
+   "grok": 5750,
+   "logit_keys": [
+    7,
+    26,
+    55
+   ],
+   "neuron_keys": [
+    7,
+    26,
+    55
+   ],
+   "test_acc": 1.0
+  },
+  {
+   "k": 25,
+   "level": 1.0,
+   "init": 9800,
+   "grok": 4250,
+   "logit_keys": [
+    9,
+    11,
+    25
+   ],
+   "neuron_keys": [
+    9,
+    11,
+    25
+   ],
+   "test_acc": 1.0
+  },
+  {
+   "k": 25,
+   "level": 1.0,
+   "init": 9801,
+   "grok": 3750,
+   "logit_keys": [
+    22,
+    25,
+    32,
+    43
+   ],
+   "neuron_keys": [
+    22,
+    25,
+    32,
+    43
+   ],
+   "test_acc": 0.9991050958633423
+  },
+  {
+   "k": 25,
+   "level": 0.0,
+   "init": 9800,
+   "grok": 3250,
+   "logit_keys": [
+    9,
+    11,
+    46
+   ],
+   "neuron_keys": [
+    9,
+    11,
+    46
+   ],
+   "test_acc": 0.971585214138031
+  },
+  {
+   "k": 25,
+   "level": 0.0,
+   "init": 9801,
+   "grok": 4750,
+   "logit_keys": [
+    4,
+    43
+   ],
+   "neuron_keys": [
+    4,
+    22,
+    43
+   ],
+   "test_acc": 1.0
+  },
+  {
+   "k": 28,
+   "level": 1.0,
+   "init": 9800,
+   "grok": 4500,
+   "logit_keys": [
+    3,
+    7,
+    28
+   ],
+   "neuron_keys": [
+    3,
+    7,
+    28
+   ],
+   "test_acc": 1.0
+  },
+  {
+   "k": 28,
+   "level": 1.0,
+   "init": 9801,
+   "grok": 9000,
+   "logit_keys": [
+    19,
+    28,
+    43
+   ],
+   "neuron_keys": [
+    19,
+    28,
+    43,
+    50
+   ],
+   "test_acc": 1.0
+  },
+  {
+   "k": 28,
+   "level": 0.0,
+   "init": 9800,
+   "grok": 5750,
+   "logit_keys": [
+    3,
+    7,
+    25
+   ],
+   "neuron_keys": [
+    3,
+    7,
+    25
+   ],
+   "test_acc": 1.0
+  },
+  {
+   "k": 28,
+   "level": 0.0,
+   "init": 9801,
+   "grok": 9000,
+   "logit_keys": [
+    6,
+    46
+   ],
+   "neuron_keys": [
+    6,
+    46,
+    56
+   ],
+   "test_acc": 1.0
+  },
+  {
+   "k": 33,
+   "level": 1.0,
+   "init": 9800,
+   "grok": 2250,
+   "logit_keys": [
+    33
+   ],
+   "neuron_keys": [
+    25,
+    33,
+    46
+   ],
+   "test_acc": 1.0
+  },
+  {
+   "k": 33,
+   "level": 1.0,
+   "init": 9801,
+   "grok": 6250,
+   "logit_keys": [
+    1,
+    17,
+    22,
+    33
+   ],
+   "neuron_keys": [
+    1,
+    17,
+    22,
+    33
+   ],
+   "test_acc": 1.0
+  },
+  {
+   "k": 33,
+   "level": 0.0,
+   "init": 9800,
+   "grok": 5000,
+   "logit_keys": [
+    1,
+    46,
+    53
+   ],
+   "neuron_keys": [
+    1,
+    46,
+    53
+   ],
+   "test_acc": 1.0
+  },
+  {
+   "k": 33,
+   "level": 0.0,
+   "init": 9801,
+   "grok": 5250,
+   "logit_keys": [
+    15,
+    22,
+    27,
+    55
+   ],
+   "neuron_keys": [
+    15,
+    22,
+    27,
+    55
+   ],
+   "test_acc": 1.0
+  },
+  {
+   "k": 35,
+   "level": 1.0,
+   "init": 9800,
+   "grok": 2750,
+   "logit_keys": [
+    25,
+    35
+   ],
+   "neuron_keys": [
+    9,
+    25,
+    35,
+    39
+   ],
+   "test_acc": 1.0
+  },
+  {
+   "k": 35,
+   "level": 1.0,
+   "init": 9801,
+   "grok": 2750,
+   "logit_keys": [
+    16,
+    22,
+    35
+   ],
+   "neuron_keys": [
+    16,
+    22,
+    31,
+    35
+   ],
+   "test_acc": 1.0
+  },
+  {
+   "k": 35,
+   "level": 0.0,
+   "init": 9800,
+   "grok": 4500,
+   "logit_keys": [
+    9,
+    12,
+    25,
+    39
+   ],
+   "neuron_keys": [
+    9,
+    12,
+    25,
+    39
+   ],
+   "test_acc": 0.9998881816864014
+  },
+  {
+   "k": 35,
+   "level": 0.0,
+   "init": 9801,
+   "grok": 5500,
+   "logit_keys": [
+    16,
+    31,
+    42
+   ],
+   "neuron_keys": [
+    16,
+    31,
+    42
+   ],
+   "test_acc": 0.9916098117828369
+  },
+  {
+   "k": 41,
+   "level": 1.0,
+   "init": 9800,
+   "grok": 2750,
+   "logit_keys": [
+    2,
+    41,
+    46
+   ],
+   "neuron_keys": [
+    2,
+    41,
+    46
+   ],
+   "test_acc": 0.9994406700134277
+  },
+  {
+   "k": 41,
+   "level": 1.0,
+   "init": 9801,
+   "grok": 5500,
+   "logit_keys": [
+    13,
+    41,
+    47,
+    55
+   ],
+   "neuron_keys": [
+    13,
+    41,
+    47,
+    55
+   ],
+   "test_acc": 0.9968677163124084
+  },
+  {
+   "k": 41,
+   "level": 0.0,
+   "init": 9800,
+   "grok": 4000,
+   "logit_keys": [
+    1,
+    14,
+    46
+   ],
+   "neuron_keys": [
+    1,
+    2,
+    14,
+    46
+   ],
+   "test_acc": 1.0
+  },
+  {
+   "k": 41,
+   "level": 0.0,
+   "init": 9801,
+   "grok": 6750,
+   "logit_keys": [
+    1,
+    18,
+    30,
+    55
+   ],
+   "neuron_keys": [
+    1,
+    18,
+    30,
+    55
+   ],
+   "test_acc": 0.997986376285553
+  },
+  {
+   "k": 43,
+   "level": 1.0,
+   "init": 9800,
+   "grok": 6000,
+   "logit_keys": [
+    33,
+    39,
+    43,
+    46
+   ],
+   "neuron_keys": [
+    33,
+    39,
+    43,
+    46
+   ],
+   "test_acc": 0.9998881816864014
+  },
+  {
+   "k": 43,
+   "level": 1.0,
+   "init": 9801,
+   "grok": 4250,
+   "logit_keys": [
+    43
+   ],
+   "neuron_keys": [
+    4,
+    26,
+    43
+   ],
+   "test_acc": 1.0
+  },
+  {
+   "k": 43,
+   "level": 0.0,
+   "init": 9800,
+   "grok": 5250,
+   "logit_keys": [
+    12,
+    39,
+    46
+   ],
+   "neuron_keys": [
+    12,
+    39,
+    46
+   ],
+   "test_acc": 1.0
+  },
+  {
+   "k": 43,
+   "level": 0.0,
+   "init": 9801,
+   "grok": 4500,
+   "logit_keys": [
+    4,
+    11,
+    26,
+    27,
+    55
+   ],
+   "neuron_keys": [
+    4,
+    11,
+    26,
+    27,
+    55
+   ],
+   "test_acc": 0.999776303768158
+  }
+ ]
+}

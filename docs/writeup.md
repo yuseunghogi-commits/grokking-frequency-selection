@@ -162,6 +162,27 @@ The prediction was 0.46 with a window of 0.32–0.60, so the test **failed**. Th
 roughly as (1 − f)^0.7–0.8. See docs/theory_init_side.md, which also covers the exploratory init-side theory: the OV-path
 argument, the output-side product rule, and the failed power-sum model.
 
+### 3.8 Two layers (v7)
+
+Pre-registered in PREREG7. A development pilot used separate seeds. A pipeline smoke test overlapped with the
+confirmatory seeds after registration; this is disclosed in experiments/10_two_layer/SMOKE_NOTE.md. The model has two
+blocks without LayerNorm: block 1 has causal attention and an MLP at all positions, block 2 has attention and an MLP at
+`=`. It used the PREREG5 splits and fresh inits 9800–9811, and ran on a Kaggle T4.
+
+- **T1 (early steering):** the target was in the step-200 top-3 in 3 % of runs on the original splits and in 100 %
+  (96/96) on the steered splits (sign-flip p = 0.004). **PASS.**
+- **T2 (D(k) in two layers):** within-split Spearman(D, data vote) = 0.72, p = 1e-4. **PASS.**
+- **T3 (final circuit):** the target carried ≥ 5 % of the logit energy in 15/16 steered runs vs 0/16 original-split runs
+  (Fisher p = 2.8·10⁻⁸). By the secondary neuron rule it was 16/16 vs 0/16. The miss (k\* = 17, init 9801) has 17 among
+  its block-2 neuron clusters but below 5 % of the logit energy. **PASS.**
+- **T4 (init-side theory):** predicted that the readout through all linear attention paths, E(OV1 + OV2 + OV1 OV2), beats
+  E·OV1. Observed mean per-init ρ: E 0.74, E·OV1 0.68, all paths 0.64, E·OV2 0.41, W_U 0.18. The difference
+  (all − OV1) was −0.04 with CI [−0.09, 0.004]. **FAIL.** In the 2-layer model, the raw embedding spectrum is the best
+  init readout. A post hoc reading: block-2 attention reads E directly at the operand positions, and block 1 also builds
+  features at those positions, so "the MLP sees tokens only through OV" no longer holds. This was not tested.
+- **T5:** all 32 runs grokked. The steered runs grokked earlier (median 4000 vs 5125 steps), and final test accuracy
+  was ≥ 0.997 on average for both.
+
 ## 4. Limitations
 
 - Everything is small: 1-layer models, p ≤ 113, a single optimiser setting with frac 0.3 by default. Whether anything
