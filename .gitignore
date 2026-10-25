@@ -4,3 +4,10 @@ __pycache__/
 results_v4.log
 *.egg-info/
 .DS_Store
+paper/*.aux
+paper/*.log
+paper/*.out
+paper/*.blg
+paper/*.fls
+paper/*.fdb_latexmk
+paper/build.log

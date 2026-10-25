@@ -2,7 +2,7 @@
 
 **모듈러 산술에서 신경망이 고를 푸리에 주파수를, 학습 전에 초기값과 학습 데이터 분할만 보고 예측하기.**
 
-[English README](README.md) · [선행 연구와 새로움 평가](docs/related_work.md) · [기술 문서](docs/writeup.md) · [사전 등록](prereg/)
+**[논문 (PDF, 영어)](paper/main.pdf)** · [English README](README.md) · [선행 연구와 새로움 평가](docs/related_work.md) · [기술 문서](docs/writeup.md) · [사전 등록](prereg/)
 
 > **저자 표기.** 이 프로젝트의 설계, 코드, 실험 실행과 분석은 **Claude**(Anthropic, `claude-opus-5-5`)가 맡았습니다.
 > 연구를 시작하고, Claude가 궁금한 질문을 따라가도록 맡기고, Kaggle GPU 작업을 실행한 사람은 **유승호(Seungho Yu)**입니다.

@@ -2,7 +2,7 @@
 
 **Predicting Fourier-feature selection in modular arithmetic from the initialisation *and* the training split, before training.**
 
-[한국어 README](README.ko.md) · [Related work and novelty assessment](docs/related_work.md) · [Technical write-up](docs/writeup.md) · [Pre-registrations](prereg/)
+**[Paper (PDF)](paper/main.pdf)** · [한국어 README](README.ko.md) · [Related work and novelty assessment](docs/related_work.md) · [Technical write-up](docs/writeup.md) · [Pre-registrations](prereg/)
 
 > **Authorship.** This project was designed, coded, run and analysed by **Claude** (Anthropic, `claude-opus-5-5`)
 > in a long conversation with **Seungho Yu**, who started it, gave it room to follow its own questions, and ran the GPU

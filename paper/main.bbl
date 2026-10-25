@@ -1,0 +1,142 @@
+\begin{thebibliography}{20}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Chughtai et~al.(2023)Chughtai, Chan, and Nanda]{chughtai2023toy}
+Bilal Chughtai, Lawrence Chan, and Neel Nanda.
+\newblock A toy model of universality: Reverse engineering how networks learn
+  group operations.
+\newblock In \emph{International Conference on Machine Learning}, 2023.
+\newblock arXiv:2302.03025.
+
+\bibitem[Ding et~al.(2024)Ding, Guo, Michaud, Liu, and
+  Tegmark]{ding2024survival}
+Ding, Guo, Eric~J. Michaud, Ziming Liu, and Max Tegmark.
+\newblock Survival of the fittest representation: A case study with modular
+  addition.
+\newblock \emph{arXiv preprint arXiv:2405.17420}, 2024.
+
+\bibitem[Gromov(2023)]{gromov2023grokking}
+Andrey Gromov.
+\newblock Grokking modular arithmetic.
+\newblock \emph{arXiv preprint arXiv:2301.02679}, 2023.
+
+\bibitem[He et~al.(2026)He, Wang, Chen, and Yang]{he2026mechanism}
+He, Wang, Chen, and Yang.
+\newblock On the mechanism and dynamics of modular addition: Fourier features,
+  lottery ticket, and grokking.
+\newblock \emph{arXiv preprint arXiv:2602.16849}, 2026.
+
+\bibitem[Ilyas et~al.(2022)Ilyas, Park, Engstrom, Leclerc, and
+  Madry]{ilyas2022datamodels}
+Andrew Ilyas, Sung~Min Park, Logan Engstrom, Guillaume Leclerc, and Aleksander
+  Madry.
+\newblock Datamodels: Predicting predictions from training data.
+\newblock In \emph{International Conference on Machine Learning}, 2022.
+
+\bibitem[Kumar et~al.(2024)Kumar, Bordelon, Gershman, and
+  Pehlevan]{kumar2024grokking}
+Kumar, Bordelon, Gershman, and Pehlevan.
+\newblock Grokking as the transition from lazy to rich training dynamics.
+\newblock In \emph{International Conference on Learning Representations}, 2024.
+\newblock arXiv:2310.06110.
+
+\bibitem[Kumar and Sankaranarayanan(2026)]{kumar2026flat}
+Akash Kumar and Karthik Sankaranarayanan.
+\newblock Flat loss, evolving features: Grokking in modular addition.
+\newblock \emph{arXiv preprint arXiv:2610.22593}, 2026.
+
+\bibitem[LeDoux(2026)]{ledoux2026order}
+LeDoux.
+\newblock The order is the message.
+\newblock \emph{arXiv preprint arXiv:2603.25047}, 2026.
+
+\bibitem[Liu et~al.(2022)Liu, Kitouni, Nolte, Michaud, Tegmark, and
+  Williams]{liu2022effective}
+Ziming Liu, Kitouni, Nolte, Eric~J. Michaud, Max Tegmark, and Williams.
+\newblock Towards understanding grokking: An effective theory of representation
+  learning.
+\newblock In \emph{Advances in Neural Information Processing Systems}, 2022.
+\newblock arXiv:2205.10343.
+
+\bibitem[Mallinar et~al.(2025)]{mallinar2025emergence}
+Neil Mallinar et~al.
+\newblock Emergence in non-neural models: grokking modular arithmetic via
+  average gradient outer product.
+\newblock In \emph{International Conference on Machine Learning}, 2025.
+\newblock arXiv:2407.20199.
+
+\bibitem[Mohamadi et~al.(2024)Mohamadi, Li, Wu, and
+  Sutherland]{mohamadi2024why}
+Mohamadi, Li, Wu, and Danica~J. Sutherland.
+\newblock Why do you grok? a theoretical analysis of grokking modular addition.
+\newblock In \emph{International Conference on Machine Learning}, 2024.
+\newblock arXiv:2407.12332.
+
+\bibitem[Morwani et~al.(2024)Morwani, Edelman, Oncescu, Zhao, and
+  Kakade]{morwani2024feature}
+Morwani, Edelman, Oncescu, Zhao, and Sham Kakade.
+\newblock Feature emergence via margin maximization: case studies in algebraic
+  tasks.
+\newblock In \emph{International Conference on Learning Representations}, 2024.
+\newblock arXiv:2311.07568.
+
+\bibitem[Nanda et~al.(2023)Nanda, Chan, Lieberum, Smith, and
+  Steinhardt]{nanda2023progress}
+Neel Nanda, Lawrence Chan, Tom Lieberum, Jess Smith, and Jacob Steinhardt.
+\newblock Progress measures for grokking via mechanistic interpretability.
+\newblock In \emph{International Conference on Learning Representations}, 2023.
+\newblock arXiv:2301.05217.
+
+\bibitem[Power et~al.(2022)Power, Burda, Edwards, Babuschkin, and
+  Misra]{power2022grokking}
+Alethea Power, Yuri Burda, Harri Edwards, Igor Babuschkin, and Vedant Misra.
+\newblock Grokking: Generalization beyond overfitting on small algorithmic
+  datasets.
+\newblock \emph{arXiv preprint arXiv:2201.02177}, 2022.
+
+\bibitem[Rubin et~al.(2024)Rubin, Seroussi, and Ringel]{rubin2024grokking}
+Rubin, Seroussi, and Ringel.
+\newblock Grokking as a first order phase transition in two layer networks.
+\newblock In \emph{International Conference on Learning Representations}, 2024.
+\newblock arXiv:2310.03789.
+
+\bibitem[Tian(2026)]{tian2025provable}
+Yuandong Tian.
+\newblock Provable scaling laws of feature emergence from learning dynamics of
+  grokking.
+\newblock In \emph{International Conference on Learning Representations}, 2026.
+\newblock arXiv:2509.21519.
+
+\bibitem[Tom{\`a}s et~al.(2026)Tom{\`a}s, Mallinar, and
+  Belkin]{tomas2026breaking}
+Tom{\`a}s, Neil Mallinar, and Mikhail Belkin.
+\newblock Breaking data symmetry is needed for generalization in feature
+  learning kernels.
+\newblock In \emph{International Conference on Artificial Intelligence and
+  Statistics}, 2026.
+\newblock arXiv:2604.00316.
+
+\bibitem[Wang et~al.(2026)Wang, Yao, Liu, Lu, and Xu]{wang2026probability}
+Wang, Yao, Liu, Lu, and Xu.
+\newblock Probability-signature dynamics: Unpacking modular addition learning
+  within two-layer networks.
+\newblock \emph{arXiv preprint arXiv:2610.11833}, 2026.
+
+\bibitem[Yao and Xu(2025)]{yao2025probability}
+Yao and Xu.
+\newblock Probability signature: Bridging data semantics and embedding
+  structure in language models.
+\newblock \emph{arXiv preprint arXiv:2509.20124}, 2025.
+
+\bibitem[Zhong et~al.(2023)Zhong, Liu, Tegmark, and Andreas]{zhong2023clock}
+Ziqian Zhong, Ziming Liu, Max Tegmark, and Jacob Andreas.
+\newblock The clock and the pizza: Two stories in mechanistic explanation of
+  neural networks.
+\newblock In \emph{Advances in Neural Information Processing Systems}, 2023.
+\newblock arXiv:2306.17844.
+
+\end{thebibliography}
