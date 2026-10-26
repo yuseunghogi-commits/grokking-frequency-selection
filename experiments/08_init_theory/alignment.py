@@ -13,6 +13,7 @@ for t in range(31):
     if t in (5, 10, 20, 30): snaps[t] = W["W_E"][:, :P].detach().clone()
     if t == 30: break
     loss = F.cross_entropy(G.forward(W, X).reshape(-1, P), Y.reshape(-1), reduction="none").reshape(M, -1).mean(1).sum(); loss.backward(); opt.step(G.lr_at(t))
+ALIGN = {}
 for m in range(M):
     U = sts[m]["W_U"].double(); OV = torch.einsum("hde,hef->df", sts[m]["W_V"], sts[m]["W_O"]).double()
     uk = fc(U.T)                                   # [56, d] output direction per frequency (classes)
@@ -23,13 +24,18 @@ for m in range(M):
         for t in (5, 10, 30):
             dE = fc(snaps[t][m] - E0[m]); row.append(f"dE@{t}: {cosc(dE, y).mean():.3f}/{cosc(dE, y.conj()).mean():.3f}")
         print(inits[m], f"{name:7s}", " | ".join(row))
+        ALIGN.setdefault(name, {})[inits[m]] = dict(init=float(max(cosc(e0, y).mean(), cosc(e0, y.conj()).mean())), **{f"dE{t}": float(max(cosc(fc(snaps[t][m] - E0[m]), y).mean(), cosc(fc(snaps[t][m] - E0[m]), y.conj()).mean())) for t in (5, 10, 30)})
 print("chance ~", round(float(np.sqrt(np.pi / 4 / 128)), 3), "(mean |cos| of random complex vectors in C^128)")
 from scipy.stats import spearmanr
 sys.path.insert(0, os.path.join(ROOT, "experiments", "07_steering")); from steer import D_of, split_perm
 D = np.log(D_of(split_perm(split)[0]))
-print("per-frequency relations at step 10 (Spearman across 56 k):")
+print("per-frequency relations at step 10 (Spearman across 56 k):"); REL = {}
 for m in range(M):
     OV = torch.einsum("hde,hef->df", sts[m]["W_V"], sts[m]["W_O"]).double(); uk = fc(sts[m]["W_U"].double().T)
     y = (OV.to(torch.complex128) @ uk.T).T; dE = fc(snaps[10][m] - E0[m])
     al = np.maximum(cosc(dE, y), cosc(dE, y.conj())); amp = np.log(dE.abs().pow(2).sum(-1).numpy())
+    REL[inits[m]] = dict(rho_amp_D=float(spearmanr(amp, D).correlation), rho_align_D=float(spearmanr(al, D).correlation))
     print(f"  init {inits[m]}: rho(|dE_k|^2, D) {spearmanr(amp, D).correlation:+.2f} | rho(align_k, D) {spearmanr(al, D).correlation:+.2f} | rho(align_k, |dE_k|^2) {spearmanr(al, amp).correlation:+.2f}")
+
+import json; os.makedirs(os.path.join(H, "results"), exist_ok=True)
+json.dump(dict(mean_abs_cos=ALIGN, chance=float(np.sqrt(np.pi / 4 / 128)), per_frequency=REL), open(os.path.join(H, "results", "alignment.json"), "w"), indent=1)

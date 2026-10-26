@@ -66,7 +66,7 @@ IS = J("experiments", "08_init_theory", "results", "init_side.json"); V2 = J("ex
 fig, ax = plt.subplots(1, 3, figsize=(7.6, 2.6), gridspec_kw=dict(width_ratios=[1.15, 1, 1.15]))
 labs = ["chance", "init\nvote", "data\nvote", "init +\ndata"]; vals = [S1["chance"], S1["hits"]["init"], S1["hits"]["data"], S1["hits"]["both"]]
 bb = ax[0].bar(range(4), vals, color=[LIGHT, INK2, ORANGE, BLUE], width=.62); ax[0].set_ylim(0, 1450); barlabels(ax[0], bb)
-ax[0].set_xticks(range(4), labs); ax[0].set_ylabel("top-3 hits (of 3072)"); T(ax[0], "a", "Held-out 16 × 16 factorial"); ax[0].grid(axis="x", visible=False); panel(ax[0], "a")
+ax[0].set_xticks(range(4), labs); ax[0].set_ylabel("top-3 hits (of 3072)"); T(ax[0], "a", "Held-out 32 × 32 factorial"); ax[0].grid(axis="x", visible=False); panel(ax[0], "a")
 conds = [("a→a+t", "H2"), ("MLP\nonly", "H4"), ("shuffled", "H1"), ("a−b", "H3")]
 vals = [V2[h]["agreement"] for _, h in conds]; ceil = np.mean([V2[h]["ceiling"] for _, h in conds])
 bb = ax[1].bar(range(4), vals, color=[BLUE, BLUE, LIGHT, LIGHT], width=.62); ax[1].axhline(ceil, color=INK2, lw=1, ls="--")

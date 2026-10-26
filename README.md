@@ -17,7 +17,7 @@ frequencies it uses differs from run to run, and earlier work describes this as 
 
 ## Main findings
 
-1. **Two inputs decide the frequencies, and they add.** In an init × split factorial (16 × 16 runs, held-out test set),
+1. **Two inputs decide the frequencies, and they add.** In an init × split factorial (32 × 32 runs, held-out test set),
    the frequencies that lead at step 500 are predicted by the run's initialisation *and*, separately, by which 30 % of the
    pairs are in its training set. Combining the two predicts much better than either alone: 1265 top-3 hits out of 3072
    vs. 655 (init only) and 959 (data only), with chance at 165 (pre-registered C1, bootstrap CIs exclude 0).
@@ -82,7 +82,7 @@ circuits of 64 fully trained runs, 43 % of its top-3 frequencies are true key fr
 - The step-500 "winner" proxy recovers only 56.5 % of the final key frequencies. It is a strong prediction target, but it
   is not the final circuit.
 - C6: internal progress measures did not beat a behavioural baseline at predicting grokking time (C 0.85 vs 0.92).
-- H5: per-pair datamodels do not predict the data vote well. An early in-sample R² of 0.87 was overfitting; held out it is ~0.03.
+- H5: per-pair influence (datamodels) did not replicate across init groups (2 of 4 splits; criterion 3 of 4), and held-out R² is ~0.03.
 - PREREG7 T4: the 2-layer init-readout prediction (all paths > layer-1 OV path) failed.
 - PREREG6: a √(1 − f) law for how the data vote weakens with the training fraction f (derived after seeing a sweep)
   failed its pre-registered test at f = 0.85 (R = 0.29, window 0.32–0.60). The effect shrinks faster than √(1 − f).

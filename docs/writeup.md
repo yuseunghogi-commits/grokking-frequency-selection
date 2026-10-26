@@ -40,7 +40,7 @@ split-half reliability as a noise ceiling.
 | | where | runs | pre-registered claims |
 |---|---|---|---|
 | pilot | CPU | ~60 single runs | grokking reproduced, frequencies vary with seed, early spectrum predicts final keys |
-| v1 | Kaggle T4, 9.4 h | 2 factorials (dev / test, 16 × 16), 64 full runs, 2 × 1536-run datamodels, MLP and subtraction variants | C1–C6, R1 |
+| v1 | Kaggle T4, 9.4 h | 2 factorials (dev / test, 32 × 32), 64 full runs, 2 × 1536-run datamodels, MLP and subtraction variants | C1–C6, R1 |
 | v2 | Kaggle T4 | shift / shuffle / subtraction / MLP conditions, datamodels on 4 splits, time course | H1–H5 |
 | v3 | CPU | 16 splits × 16 inits, 200 steps | P1, P2 (D(k)) |
 | derivation | CPU | ΔE vs D per run; training fraction 0.15–0.7 | exploratory |

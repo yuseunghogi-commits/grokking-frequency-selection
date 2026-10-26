@@ -126,15 +126,17 @@ The \emph{key frequencies} of a trained one-layer run are found by clustering ML
 and keeping clusters with $\ge 3\,\%$ of the live neurons. These were validated causally (Fig.~\ref{fig:phen}). For two
 layers we pre-registered a logit rule: frequencies holding $\ge 5\,\%$ of the logit energy in the
 $\cos/\sin\,k(a+b-c)$ components. A development pilot showed that this rule separates cleanly (keys 7--68\,\%, others
-$\le 2\,\%$) and agrees with the neuron rule.
+$\le 2.1\,\%$), and that its keys were a subset of those found by the neuron rule.
 
 \textbf{Votes.} In a grid of inits~$\times$~splits, let $Z_{i,s}$ be the $z$-scored log spectrum of cell $(i,s)$. The
 \emph{init vote} of a cell averages $Z$ over the same init on other splits. The \emph{data vote} averages $Z$ over the same
 split with other inits and, from v2 on, is centred across splits to remove components shared through common inits. This
-centring was introduced after a smoke test produced a spurious agreement of 0.98 between two conditions that shared inits.
+centring was introduced after a development smoke test (not archived) showed a spurious agreement of about 0.98 between two
+conditions that shared inits.
 
 \textbf{Statistics.} We report top-3 hits $\sum_{\text{cells}}|\text{pred}_3\cap\text{win}_3|$ (chance $9/n_f$ per cell).
-Nulls are cluster-aware permutations: a hypergeometric null overstated significance roughly 300-fold in a smoke test.
+Nulls are cluster-aware permutations: in a development smoke test (not archived) a hypergeometric null gave $p\approx3\cdot10^{-5}$ where the cluster-aware null
+gave $0.0085$.
 Confidence intervals are paired bootstraps over inits and splits. Rank agreement is the mean within-split Spearman
 correlation, with permutation $p$-values. Noise ceilings are Spearman--Brown split-half reliabilities.
 
@@ -148,7 +150,7 @@ GitHub before the run. Development and test seeds are disjoint. Table~\ref{tab:r
 \begin{tabularx}{\linewidth}{@{}l l X l@{}}\toprule
 stage & where & design & claims \\\midrule
 pilot & CPU & single runs; seeds; weight-decay control & reproduction \\
-v1 & Kaggle, 9.4\,h & dev and test factorials ($16\times16$, step 500); 64 full runs; $2\times1536$-run datamodels; MLP and subtraction variants & C1--C6, R1 \\
+v1 & Kaggle, 9.4\,h & dev and test factorials ($32\times32$, step 500); 64 full runs; $2\times1536$-run datamodels; MLP and subtraction variants & C1--C6, R1 \\
 v2 & Kaggle, 2.8\,h & data vote under relabel / shuffle / subtraction / MLP; per-pair datamodels; time course & H1--H5 \\
 v3 & CPU & 16 fresh splits $\times$ 16 fresh inits, 200 steps & P1, P2 (\Dk) \\
 v4 & CPU & $p\in\{59,97\}$, $+$ and $\times$; 8 splits $\times$ 12 inits & G1, G2 \\
@@ -162,7 +164,7 @@ v7 & Kaggle & steering and init readout in a 2-layer model; 192 short + 32 full 
 
 \subsection{Initialisation and split both decide, and their effects add}
 \label{sec:factorial}
-On a held-out $16\times16$ factorial (fresh inits and splits), we predicted each cell's step-500 winners from its init
+On a held-out $32\times32$ factorial (1024 cells; fresh inits and splits), we predicted each cell's step-500 winners from its init
 vote, its data vote, and their sum (Fig.~\ref{fig:votes}a). The init vote alone gets 655 of 3072 top-3 slots and the data
 vote alone 959; chance is 165. Their $z$-sum gets \textbf{1265}, and both bootstrap intervals of the improvement exclude
 zero ($[499,716]$ over init, $[212,409]$ over data; C1 \pass). The data effect is causal. A ridge datamodel fitted on 1536
@@ -171,8 +173,9 @@ of pairs drives $z(k^\star)$ to $-0.71$ and $-1.01$ in the two tested splits, co
 10\,\% removals and $+3.86$ and $+3.47$ for removing the bottom 10\,\% (C3 \pass, Holm $p=0.0002$ for both).
 
 The step-500 winners are a leading-frequency target, not the final circuit. They agree with the step-200 winners in 96\,\%
-of slots, but contain only 56.5\,\% of the final key frequencies of 64 fully trained runs. The pre-registered validity
-criterion of 75\,\% failed, so we treat early winners and final circuits as separate outcomes and test both from v5 on.
+of slots, but contain only 56.5\,\% of the final key frequencies of 64 fully trained runs. This is below the
+validity threshold of 75\,\% that the v1 analysis code fixed before the run (the threshold is in the code, not in the
+registration text), so we treat early winners and final circuits as separate outcomes and test both from v5 on.
 
 \begin{figure}[t]\centering
 \includegraphics[width=\linewidth]{figures/fig3_votes.pdf}
@@ -191,8 +194,10 @@ every token $a\mapsto a+t$ changes every token identity but preserves which equa
 (agreement 0.955, ceiling 0.957; H2 \pass). Shuffling the labels keeps the token statistics but destroys the group
 structure, and the vote is gone (0.04). Training on $a-b$ with the same pairs gives an unrelated vote (0.006). An MLP-only
 network on the same splits inherits most of the vote (0.69; H4 \pass), so the vote is largely a property of the data
-rather than of attention. Per-pair linear datamodels predict it poorly on held-out data ($R^2\approx0.03$; H5 \fail): the
-vote is spread over many equations. The vote forms within the first $\sim$20 steps in the embedding and the OV path
+rather than of attention. H5 asked whether per-pair influence (ridge datamodels on 1536 runs per split) is reproducible across two init groups
+($\rho>0$, $p<0.01$ in at least 3 of 4 splits). Only 2 of 4 splits passed ($\rho=0.02$--$0.04$; H5 \fail), and the
+datamodels predict held-out runs poorly ($R^2\approx0.03$, descriptive): the vote is spread over many equations, and no
+small set of pairs carries it. The vote forms within the first $\sim$20 steps in the embedding and the OV path
 (Fig.~\ref{fig:votes}c), long before grokking.
 
 \subsection{A closed form for the data vote: shared answers}
@@ -230,8 +235,9 @@ the leading term of known analyses~\citep{yao2025probability,wang2026probability
 on a \emph{finite} split, where $N$ is not circulant, as a per-frequency predictor.
 
 Two consequences check out (exploratory). First, the relation holds run by run: each run's own early $\Delta E$ spectrum
-correlates with its own split's \Dk\ ($\rho=0.33$--$0.46$) and anti-correlates with other splits' \Dk. Plain SGD gives the
-same (0.37), so this is not an Adam effect. Second, for a random split, \Dk\ is a sum of $p$ independent terms, so its
+correlates with its own split's \Dk\ after removing the part shared across splits (mean $\rho=0.34$ at step 10 and
+$0.38$ at step 30; all 16 runs positive, minimum $0.18$). It anti-correlates with the other splits' \Dk\ (mean $-0.12$).
+Plain SGD gives the same picture (0.37), so this is not an Adam effect. Second, for a random split, \Dk\ is a sum of $p$ independent terms, so its
 relative spread across $k$ should be $\approx1/\sqrt{n}$, independent of the training fraction. The observed spread is
 0.095--0.099 at four training fractions (prediction 0.094). Across primes and operations it matches within the
 pre-registered $\pm25\,\%$ (Fig.~\ref{fig:general}b; G2 \pass).
@@ -355,7 +361,7 @@ How the init and data terms combine is not settled. The obvious physical model t
 $P_{\text{in}}+\gamma\Dk$. Its best $\gamma$ on dev gives 829 hits, far below the equal-weight $z$-sum (945); \Dk\ varies by
 only $\sim$10\,\% across $k$, so adding it as power changes little. We suspected that data-driven updates are aligned with
 the output pathway while random initial structure is not. The early $\Delta E$ is indeed more aligned with
-$W_{OV}W_U$ at each frequency than the initial embedding: mean $|\cos|$ is 0.12--0.16, against 0.076--0.082 at
+$W_{OV}W_U$ at each frequency than the initial embedding: mean $|\cos|$ is 0.13--0.16 at step 10, against 0.076--0.080 at
 initialisation and 0.078 for random vectors. But the alignment does not track \Dk\ across frequencies
 ($\rho=-0.08$ to $+0.20$), so it cannot explain the ranking.
 
@@ -393,8 +399,8 @@ We list every pre-registered failure (Table~\ref{tab:prereg}):
 \item \textbf{Proxy validity:} early winners contain only 56.5\,\% of the final keys.
 \item \textbf{C6:} internal progress measures predicted grokking time worse than a behavioural baseline (Harrell's $C$:
   0.85 vs.\ 0.92).
-\item \textbf{H5:} per-pair datamodels have held-out $R^2\approx0.03$. An in-sample $R^2$ of 0.87 that we first reported
-  internally was overfitting.
+\item \textbf{H5:} per-pair influence did not replicate across init groups (2 of 4 splits; criterion 3 of 4), and
+  the datamodels predict held-out runs poorly ($R^2\approx0.03$).
 \item \textbf{F1 (v6):} the $\sqrt{1-f}$ law (Fig.~\ref{fig:frac}).
 \item \textbf{T4 (v7):} the two-layer init readout.
 \end{itemize}
@@ -463,12 +469,12 @@ v1 (\texttt{1034f794}) & C1 & init+data beats each alone (CI$>0$) $\to$ 1265 vs 
  & C5 & median commitment step $\le5\,\%$ of median grokking step $\to$ 2.3\,\% (base), 2.5\,\% (MLP); subtraction not testable (5/16 grokked) & \pass \\
  & C6 & internal measures beat behavioural baseline for grokking time $\to$ $C$ 0.85 vs 0.92 & \fail \\
  & R1 & OV path at init above chance, $p<10^{-3}$ $\to$ 576 vs 165 & \pass \\
- & proxy & step-500 winners contain $\ge75\,\%$ of final keys $\to$ 56.5\,\% & \fail \\
+ & proxy$^\dagger$ & step-500 winners contain $\ge75\,\%$ of final keys $\to$ 56.5\,\% & \fail \\
 v2 (\texttt{9177a4a9}) & H1 & vote persists with shuffled labels ($p<0.01$) $\to$ 0.04, $p=0.048$ & \fail \\
  & H2 & shift relabelling keeps the vote $\to$ 0.955 & \pass \\
  & H3 & vote persists for subtraction on the same pairs $\to$ 0.006 & \fail \\
  & H4 & MLP-only model keeps the vote $\to$ 0.69 & \pass \\
- & H5 & per-pair datamodel predicts the vote $\to$ held-out $R^2\approx0.03$ & \fail \\
+ & H5 & per-pair influence agrees across 2 init groups in $\ge3/4$ splits $\to$ 2/4 & \fail \\
 v3 (\texttt{8292aeae}) & P1 & Spearman(\Dk, vote) $>0.5$, $p<10^{-3}$ $\to$ 0.709 & \pass \\
  & P2 & OV + \Dk\ beats OV, CI$>0$ $\to$ 230 vs 154, $[28,123]$ & \pass \\
 v4 (\texttt{95c74926}) & G1 & $\rho>0.3$, $p<0.01$ in all 4 configs $\to$ 0.65--0.74 & \pass \\
@@ -483,12 +489,13 @@ v7 (\texttt{318f50ae}) & T1 & 2-layer early steering $\to$ 100\,\% vs 3\,\% & \p
  & T4 & all-paths readout beats $E\,OV_1$ $\to$ 0.64 vs 0.68 & \fail \\\bottomrule
 \end{tabularx}
 \end{table}
+$^\dagger$The proxy threshold was fixed in the v1 analysis code before the run, not in the registration text.
 H1 and H3 were registered as hypotheses that the vote would \emph{persist} when only the inputs are kept (shuffled
 labels) or the task is changed (subtraction). Their failure is informative: the vote is set by the equations, that is, by
 the group structure of input--answer pairs, not by which inputs are present.
 
 \section{Seeds and settings}
-Dev seeds: inits and splits $0..15$ (v1 dev). Test: $1000..1015$ (v1 test); $5000..5015$/$6000..6015$ (v3 splits/inits);
+Dev seeds: inits and splits $0..31$ (v1 dev). Test: $1000..1031$ (v1 test); $5000..5015$/$6000..6015$ (v3 splits/inits);
 $8000..8007$/$8100..8111$ (v4); $9500..9507$ base splits and $9600..9611$ inits (v5); $7600..7607$/$7700..7711$ (v6);
 $9800..9811$ (v7); 2-layer pilot $9990,9991$. One-layer stage B: 10\,000 steps; two-layer stage B: up to 15\,000 steps,
 stopping 2000 steps after all runs in a batch reached 90\,\% test accuracy. Test accuracy was evaluated every 250 steps.
